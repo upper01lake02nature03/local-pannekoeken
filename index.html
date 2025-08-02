@@ -1,50 +1,1343 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><meta name="robots" content="noindex, nofollow"/><title>Local Pushback</title><!-- highchars --><script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.10.0/proj4.js" integrity="sha512-e3rsOu6v8lmVnZylXpOq3DO/UxrCgoEMqosQxGygrgHlves9HTwQzVQ/dLO+nwSbOSAecjRD7Y/c4onmiBVo6w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://code.highcharts.com/maps/highmaps.js"></script><script src="https://code.highcharts.com/maps/modules/exporting.js"></script><script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script><script src="https://code.highcharts.com/modules/marker-clusters.js"></script><script src="https://code.highcharts.com/modules/coloraxis.js"></script><!-- datatables --><script src="https://code.jquery.com/jquery-3.7.1.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script><script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script><script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap5.css"><link href="https://cdn.datatables.net/columncontrol/1.0.7/css/columnControl.dataTables.min.css" rel="stylesheet"><script src="https://cdn.datatables.net/columncontrol/1.0.7/js/dataTables.columnControl.min.js"></script><script src="https://cdn.datatables.net/responsive/3.0.5/js/dataTables.responsive.js"></script><script src="https://cdn.datatables.net/responsive/3.0.5/js/responsive.dataTables.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/><style type="text/css">body{font-family:"Arial",sans-serif;font-size:15px}.pagination{--bs-pagination-font-size:.8rem}.bd-navbar{background-color:transparent;box-shadow:0 .5rem 1rem #00000026,inset 0-1px #ffffff26}.brand{color:#fff}.map-container{height:82vh;min-width:310px;max-width:800px;margin:0 auto}.loading{margin-top:10em;text-align:center;color:gray}.cursor-pointer{cursor:pointer}
-td.cursor-pointer:hover i.fa-plus{color:rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1))}
-td.max-width-first-col{max-width:120px}
-td.td-max-width-sm{max-width:150px}.text-black-25{color:rgba(0,0,0,.25)}
-#projects>tbody>tr:nth-child(odd)td,#groups>tbody>tr:nth-child(odd)td,#articles>tbody>tr:nth-child(odd)td{background-color:var(--bs-table-striped-bg)}
-#projects tbody tr:hover td,#groups tbody tr:hover td,#articles tbody tr:hover td,.link-row:hover td{cursor:pointer;background-color:#ccf0ff!important}.link-row td i{color:var(--bs-link-color)}.link-row:hover td i{color:var(--bs-link-hover-color)}
-#projects tbody tr:hover.text-black-25,#groups tbody tr:hover.text-black-25,#articles tbody tr:hover.text-black-25{color:rgba(0,0,0,.75)}.dt-info{font-weight:bold}.callout{padding:1.25rem;margin-top:1.25rem;margin-bottom:1.25rem;background-color:var(--bd-callout-bg,var(--bs-gray-100));border-left:.25rem solid var(--bd-callout-border,var(--bs-gray-300))}.link-row:hover.callout{background-color:transparent;border-left-color:var(--bd-callout-border,var(--bs-info))}</style></head><body><nav class="navbar sticky-top bd-navbar bg-primary" data-bs-theme="dark"><div class="container-fluid"><div class="brand"><i class="fa-solid fa-user-group me-2"></i>Local pushback on lithium-ion BESS projects</div></div></nav><div class="container-fluid mt-2"><ul class="nav nav-underline" id="myTab" role="tablist"><li class="nav-item" role="presentation"><button class="nav-link active" id="projects-tab" data-bs-toggle="tab" data-bs-target="#projects-tab-pane" type="button" role="tab" aria-controls="projects-tab-pane" aria-selected="true">Projects</button></li><li class="nav-item" role="presentation"><button class="nav-link" id="groups-tab" data-bs-toggle="tab" data-bs-target="#groups-tab-pane" type="button" role="tab" aria-controls="groups-tab-pane" aria-selected="false">Groups</button></li><li class="nav-item" role="presentation"><button class="nav-link" id="articles-tab" data-bs-toggle="tab" data-bs-target="#articles-tab-pane" type="button" role="tab" aria-controls="articles-tab-pane" aria-selected="false">Articles</button></li><li class="nav-item" role="presentation"><button class="nav-link" id="maps-tab" data-bs-toggle="tab" data-bs-target="#maps-tab-pane" type="button" role="tab" aria-controls="maps-tab-pane" aria-selected="false">Map</button></li><li class="nav-item" role="presentation"><button class="nav-link" id="search-tab" data-bs-toggle="tab" data-bs-target="#search-tab-pane" type="button" role="tab" aria-controls="search-tab-pane" aria-selected="false">Search</button></li></ul><div class="tab-content" id="mainTabContent"><div class="tab-pane fade show active pb-3" id="projects-tab-pane" role="tabpanel" aria-labelledby="projects-tab" tabindex="0"><table id="projects" class="table table-sm"><thead><tr><th></th><th class="m__search">Location</th><th class="m__search">Developer</th><th class="m__search">MW</th><th class="m__search">MWh</th><th class="m__search">Duration</th><th class="m__search">Article</th><th class="m__search text-secondary">updated</th></tr></thead></table></div><div class="tab-pane fade pb-3" id="groups-tab-pane" role="tabpanel" aria-labelledby="groups-tab" tabindex="0"><table id="groups" class="table table-sm"><thead><tr><th></th><th class="m__search">Location</th><th class="m__search">Group</th><th class="m__search">type</th><th class="m__search text-secondary">updated</th></tr></thead></table></div><div class="tab-pane fade" id="articles-tab-pane" role="tabpanel" aria-labelledby="articles-tab" tabindex="0"><div class="pb-4"><table id="articles" class="table table-sm"><thead><tr><th></th><th class="m__search">Location</th><th class="m__search">Article</th><th class="m__search">Date</th></tr></thead></table></div></div><div class="tab-pane fade" id="maps-tab-pane" role="tabpanel" aria-labelledby="maps-tab" tabindex="0"><!--<div class="d-flex justify-content-center p-2"><div class="btn-group btn-group-sm" role="group" aria-label="Map data options"><input type="radio" class="btn-check" name="btnradio" id="btnradio-projects" autocomplete="off" checked><label class="btn btn-outline-secondary btn-map" for="btnradio-projects">Projects</label><input type="radio" class="btn-check" name="btnradio" id="btnradio-groups" autocomplete="off"><label class="btn btn-outline-secondary btn-map" for="btnradio-groups">Groups</label><input type="radio" class="btn-check" name="btnradio" id="btnradio-articles" autocomplete="off"><label class="btn btn-outline-secondary btn-map" for="btnradio-articles">Articles</label></div></div>--><div class="map-container" id="map-projects-container"></div></div><div class="tab-pane fade" id="search-tab-pane" role="tabpanel" aria-labelledby="search-tab" tabindex="0"><div class="container-fluid"><p class="px-2 pt-3">Google search terms for varied time frames</p><div class="row"><div class="col"><table class="table"><tbody><tr><td class="fw-bold">proposed battery energy storage system residents oppose</td></tr><tr class="link-row" onclick="openLink('https://www.google.com/search?q=proposed+battery+energy+storage+system+residents+oppose&sca_esv=a3944c8b8683a63b&source=lnt&tbs=qdr:d&sa=X&ved=2ahUKEwi41c7ag_iKAxW5EzQIHcIKPFkQpwV6BAgHEAg&biw=1163&bih=539&dpr=1.65')"><td><i class="fa-solid fa-chevron-right me-2"></i>Past 24 hours</td></tr><tr class="link-row" onclick="openLink('https://www.google.com/search?q=proposed+battery+energy+storage+system+residents+oppose&sca_esv=a3944c8b8683a63b&source=lnt&tbs=qdr:w&sa=X&ved=2ahUKEwjIuYPNr-uOAxUF38kDHQQXOdYQpwV6BAgHEAg&biw=1024&bih=474&dpr=1.88')"><td><i class="fa-solid fa-chevron-right me-2"></i>Past week</td></tr><tr class="link-row" onclick="openLink('https://www.google.com/search?q=proposed+battery+energy+storage+system+residents+oppose&sca_esv=a3944c8b8683a63b&source=lnt&tbs=qdr:m&sa=X&ved=2ahUKEwjf2onfr-uOAxUA5ckDHRuuABEQpwV6BAgDEAk&biw=1024&bih=474&dpr=1.88')"><td><i class="fa-solid fa-chevron-right me-2"></i>Past month</td></tr><tr class="link-row" onclick="openLink('https://www.google.com/search?q=proposed+battery+energy+storage+system+residents+oppose&sca_esv=a3944c8b8683a63b&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwjNzuLrseuOAxVD4skDHec6NDIQpwV6BAgDEAo&biw=1024&bih=474&dpr=1.88')"><td><i class="fa-solid fa-chevron-right me-2"></i>Past year</td></tr><tr class="link-row" onclick="openLink('https://www.google.com/search?q=proposed+battery+energy+storage+system+residents+oppose&oq=proposed+battery+energy+storage+system+residents+oppose')"><td><i class="fa-solid fa-chevron-right me-2"></i>Any time</td></tr></tbody></table></div><div class="col"><table class="table"><tbody><tr><td class="fw-bold">no lithium BESS facebook</td></tr><tr class="link-row" onclick="openLink('https://www.google.com/search?q=no+lithium+BESS+facebook&sca_esv=5742d4a9a3aae0a9&source=lnt&tbs=qdr:d&sa=X&ved=2ahUKEwjThKG6xOuOAxUMGtAFHc8eOW4QpwV6BAgDEAc&biw=1024&bih=474&dpr=1.88')"><td><i class="fa-solid fa-chevron-right me-2"></i>Past 24 hours</td></tr><tr class="link-row" onclick="openLink('https://www.google.com/search?q=no+lithium+BESS+facebook&sca_esv=5742d4a9a3aae0a9&source=lnt&tbs=qdr:w&sa=X&ved=2ahUKEwjvl5K0xOuOAxXSJNAFHW0zE_MQpwV6BAgEEAg&biw=1024&bih=474&dpr=1.88')"><td><i class="fa-solid fa-chevron-right me-2"></i>Past week</td></tr><tr class="link-row" onclick="openLink('https://www.google.com/search?q=no+lithium+BESS+facebook&sca_esv=5742d4a9a3aae0a9&source=lnt&tbs=qdr:m&sa=X&ved=2ahUKEwi0r_GrxOuOAxXALtAFHSMYByMQpwV6BAgJEAk&biw=1024&bih=474&dpr=1.88')"><td><i class="fa-solid fa-chevron-right me-2"></i>Past month</td></tr><tr class="link-row" onclick="openLink('https://www.google.com/search?q=no+lithium+BESS+facebook&sca_esv=5742d4a9a3aae0a9&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwju09qixOuOAxWeLtAFHaVsII8QpwV6BAgFEAo&biw=1024&bih=474&dpr=1.88')"><td><i class="fa-solid fa-chevron-right me-2"></i>Past year</td></tr><tr class="link-row" onclick="openLink('https://www.google.com/search?q=no+lithium+BESS+facebook')"><td><i class="fa-solid fa-chevron-right me-2"></i>Any time</td></tr></tbody></table></div></div><div class="row"><div class="col"><table class="table"><tbody><tr><td class="fw-bold">moratorium lithium Battery Energy Storage</td></tr><tr class="link-row" onclick="openLink('https://www.google.com/search?q=moratorium+lithium+Battery+Energy+Storage&sca_esv=bdc65ffe85f8e301&source=lnt&tbs=qdr:d&sa=X&ved=2ahUKEwjJjc_0z-uOAxXCGtAFHVmMNFUQpwV6BAgFEAc&biw=1024&bih=474&dpr=1.88')"><td><i class="fa-solid fa-chevron-right me-2"></i>Past 24 hours</td></tr><tr class="link-row" onclick="openLink('https://www.google.com/search?q=moratorium+lithium+Battery+Energy+Storage&sca_esv=bdc65ffe85f8e301&source=lnt&tbs=qdr:w&sa=X&ved=2ahUKEwisoqKg0OuOAxXuD9AFHZGSK64QpwV6BAgDEAg&biw=1024&bih=474&dpr=1.88')"><td><i class="fa-solid fa-chevron-right me-2"></i>Past week</td></tr><tr class="link-row" onclick="openLink('https://www.google.com/search?q=moratorium+lithium+Battery+Energy+Storage&sca_esv=bdc65ffe85f8e301&source=lnt&tbs=qdr:m&sa=X&ved=2ahUKEwi99rGZ0OuOAxVYwskDHZW-NgwQpwV6BAgFEAk&biw=1024&bih=474&dpr=1.88')"><td><i class="fa-solid fa-chevron-right me-2"></i>Past month</td></tr><tr class="link-row" onclick="openLink('https://www.google.com/search?q=moratorium+lithium+Battery+Energy+Storage&sca_esv=bdc65ffe85f8e301&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwiTz-WO0OuOAxXdmYkEHSeOOEkQpwV6BAgHEAo&biw=1024&bih=474&dpr=1.88')"><td><i class="fa-solid fa-chevron-right me-2"></i>Past year</td></tr><tr class="link-row" onclick="openLink('https://www.google.com/search?q=moratorium+lithium+Battery+Energy+Storage')"><td><i class="fa-solid fa-chevron-right me-2"></i>Any time</td></tr></tbody></table></div><div class="col"><div class="callout">Add or modify search terms as needed for more specific results.</div></div></div></div></div></div><div class="offcanvas offcanvas-start" tabindex="-1" id="detailsOffcanvas" aria-labelledby="detailsOffcanvasLabel"><div class="offcanvas-header"><h5 class="offcanvas-title mb-1" id="detailsOffcanvasLabel">Row Details</h5><button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button></div><div class="offcanvas-body"><!-- Content will be dynamically loaded here --><div id="offcanvasContent"></div></div></div></div><script type="text/javascript">var data__groups=[{"state_abrv":"TX","muni":"statewide","name":"Don't B.E.S.S with Texas","link":"https://x.com/DntbesswTexas","type":"twitter","updt":"2025-08-02"},{"state_abrv":"TX","muni":"statewide","name":"Don't B.E.S.S with Texas","link":"https://www.facebook.com/groups/1140787914186041/","type":"facebook","updt":"2025-08-02"},{"state_abrv":"TX","muni":"statewide","name":"Don't B.E.S.S with Texas","link":"https://dontbesswithtexas.com/","type":"web","updt":"2025-08-02"},{"state_abrv":"GA","muni":"Carroll County","name":"Citizens Against Rezoning for a Battery Storage Facility in Carroll Co Ga","link":"https://www.facebook.com/groups/462837076797565","type":"facebook","updt":"2025-07-31"},{"state_abrv":"WA","muni":"Covington","name":"Stop the proposed Covington Battery Energy Storage System (BESS)","link":"https://www.facebook.com/groups/3162400907401094/","type":"facebook","updt":"2025-07-31"},{"state_abrv":"CA","muni":"Santa Cruz County","name":"STOP LITHIUM B.E.S.S. IN SANTA CRUZ COUNTY","link":"https://www.facebook.com/groups/519407474020832/","type":"facebook","updt":"2025-07-31"},{"state_abrv":"CA","muni":"Santa Cruz County","name":"STOP Lithium B.E.S.S. in Santa Cruz County","link":"https://www.stoplithiumbessinsantacruz.org/","type":"web","updt":"2025-07-31"},{"state_abrv":"WA","muni":"Sedro Woolley","name":"STOP - BESS Sedro Woolley - Stewards Of Skagit","link":"https://www.facebook.com/groups/1054570489577476/?_rdr","type":"facebook","updt":"2025-07-31"},{"state_abrv":"WA","muni":"Sedro Woolley","name":"Stewards of Skagit","link":"https://www.stewardsofskagit.org/","type":"web","updt":"2025-07-31"},{"state_abrv":"CA","muni":"San Juan Capistrano","name":"BLESSIN - Ban Lithium Energy Storage Systems in Neighborhoods","link":"https://www.facebook.com/stopthebess/?_rdr","type":"facebook","updt":"2025-07-31"},{"state_abrv":"CA","muni":"San Juan Capistrano","name":"BLESSIN - Ban Lithium Energy Storage Systems in Neighborhoods","link":"https://blessinoc.org/about/","type":"web","updt":"2025-07-31"},{"state_abrv":"CA","muni":"Acton","name":"Acton Takes Action Community Task Force","link":"https://acton-bess-opposition-petition.actontakesaction.org/index.html","type":"web","updt":"2025-07-31"},{"state_abrv":"CA","muni":"Escondido","name":"Stop The Seguro Battery Energy Storage System in Escondido","link":"https://www.facebook.com/groups/184192198092935/","type":"facebook","updt":"2025-07-31"},{"state_abrv":"CA","muni":"Escondido","name":"Stop Seguro","link":"https://www.stopseguro.org/","type":"web","updt":"2025-07-31"},{"state_abrv":"ON","muni":"Armour Township","name":"Armour Township: Say NO to Lithium Battery Storage in Our Community","link":"https://www.facebook.com/groups/4069792796587028/","type":"facebook","updt":"2025-07-31"},{"state_abrv":"ON","muni":"Dunrobin","name":"Stop Marchurst BESS","link":"https://stopwestcarletonbess.ca/","type":"web","updt":"2025-07-31"},{"state_abrv":"NY","muni":"New York City","name":"NYC Residents against Battery Energy Storage Sites (BESS)","link":"https://www.facebook.com/groups/590154887370078/","type":"facebook","updt":"2025-07-31"},{"state_abrv":"NY","muni":"Long Island","name":"Protect Our Coast - LINY (North Shore)","link":"https://www.facebook.com/groups/991457282393656/about","type":"facebook","updt":"2025-07-31"},{"state_abrv":"NY","muni":"West Seneca","name":"Citizens for responsible zoning in West Seneca","link":"https://www.facebook.com/wsrespzoning/","type":"facebook","updt":"2025-07-31"},{"state_abrv":"NY","muni":"Town of Islip","name":"Stop the Furrows Road Project","link":"https://www.facebook.com/groups/stopthedump/","type":"facebook","updt":"2025-07-31"},{"state_abrv":"MA","muni":"Wendell","name":"No Assault & Batteries in Wendell MA","link":"https://nabunited.org/","type":"web","updt":"2025-07-31"},{"state_abrv":"NY","muni":"Hurley","name":"Citizens of the Town of Hurley","link":"https://www.facebook.com/groups/709145213585388/","type":"facebook","updt":"2025-07-31"},{"state_abrv":"CA","muni":"Vacaville","name":"Keep Vacaville Safe","link":"https://www.keepvacavillesafe.com/","type":"web","updt":"2025-07-31"}];var data__projects=[{"state_abrv":"ON","state_name":"Ontario (Canada)","muni":"Dunrobin","developer":"Evolugen","developer_link":"https://evolugen.com/","project":"South March BESS","project_link":"https://evolugen.com/facilities/south-march-bess/","bess_manufacturer":null,"bess_mw":250,"bess_mwh":1000,"bess_duration":4,"google_maps_url":"https://www.google.com/maps/place/Dunrobin,+ON+K0A+1T0,+Canada/@45.4239505,-76.0197507,5531m/data=!3m1!1e3!4m6!3m5!1s0x4cd1f0a6466f49e3:0x78e71bca49870f21!8m2!3d45.4222567!4d-76.020319!16zL20vMDcwN3lm?entry=ttu&g_ep=EgoyMDI1MDcyOC4wIKXMDSoASAFQAw%3D%3D","lat":45.423172283521716,"lon":-76.02078805716083,"muni_websites":[{"name":"Ottawa - Battery Energy Storage Systems (BESS) Provisions","link":"https://engage.ottawa.ca/renewable-energy-generation"}],"local_websites":[{"name":"Stop Marchurst BESS","link":"https://stopwestcarletonbess.ca/"}],"articles":[{"name":"Battery project highlights clash between city's energy goals and local concerns","link":"https://capitalcurrent.ca/battery-project-highlights-clash-between-citys-energy-goals-and-local-concerns/","date":"2025-07-27","highlight":"A massive energy storage facility to be located in rural west-end Ottawa was recently approved by city council, but remains a contentious project among locals in the area."}],"updt":"2025-07-31"},{"state_abrv":"KS","state_name":"Kansas","muni":"Halstead","developer":"Concurrent","developer_link":"https://concurrentllc.com/concurrent-plans-to-develop-200-megawatts-of-battery-storage-in-kansas-to-improve-southwest-power-pools-grid-reliability","project":"Tallgrass Prairie Energy Center","project_link":"https://tallgrassprairieenergystorage.com/","bess_manufacturer":null,"bess_mw":200,"bess_mwh":800,"bess_duration":4,"google_maps_url":"https://www.google.com/maps/place/Halstead,+KS+67056/@38.0008382,-97.4987585,6033m/data=!3m1!1e3!4m6!3m5!1s0x87bb3ea413269789:0x6764d06545a5661b!8m2!3d38.0030784!4d-97.5060144!16zL20vMHQ3OG4?entry=ttu&g_ep=EgoyMDI1MDcyOC4wIKXMDSoASAFQAw%3D%3D","lat":37.99952228403701,"lon":-97.50783306442914,"muni_websites":[{"name":"City of Halstead","link":"https://www.halsteadks.com/"}],"local_websites":[],"articles":[{"name":"Petition to block battery energy storage system (BESS) in Halstead shot down","link":"https://www.kwch.com/2025/07/09/petition-block-battery-energy-storage-system-bess-halstead-shot-down/","date":"2025-07-08","highlight":"Residents in Halstead are fighting to prevent the construction of a Battery Energy Storage System (BESS) in town."},{"name":"Commission places moratorium on BESS in unincorporated Harvey County","link":"https://www.harveycounty.gov/commission-places-moratorium-on-bess-in-unincorporated-harvey-county","date":"2025-07-10","highlight":"The decision is only applicable to the rural portions of Harvey County. Municipalities maintain home rule authority over their jurisdictions."}],"updt":"2025-07-31"},{"state_abrv":"MN","state_name":"Minnesota","muni":"Glenville","developer":"Spearmint Energy","developer_link":"https://spearmintenergy.com/","project":"Midwater Battery Energy Storage","project_link":"https://www.midwaterbattery.com/","bess_manufacturer":null,"bess_mw":150,"bess_mwh":null,"bess_duration":null,"google_maps_url":"https://www.google.com/maps/place/Glenville,+MN+56036/@43.5687168,-93.2637421,8650m/data=!3m1!1e3!4m6!3m5!1s0x87f13ac0a9a32acf:0x7093875b8d2f5589!8m2!3d43.5707905!4d-93.2835397!16zL20vMHZfbjI?entry=ttu&g_ep=EgoyMDI1MDcyOC4wIKXMDSoASAFQAw%3D%3D","lat":43.56117200870092,"lon":-93.2609761665855,"muni_websites":[{"name":"Freeborn County Board of Commissioners","link":"https://www.co.freeborn.mn.us/122/Board-of-Commissioners"},{"name":"MN Commerce Dept. - Midwater Energy Storage Project","link":"https://apps.commerce.state.mn.us/eera/web/project/15971"}],"local_websites":[],"articles":[{"name":"Freeborn commissioners oppose energy storage facility plan","link":"https://www.kaaltv.com/news/freeborn-commissioners-oppose-energy-storage-facility-plan/","date":"2025-04-17","highlight":"The Freeborn County Commissioners’ Board formally opposed building an energy storage facility near the Shell Rock River."},{"name":"'The risk is not zero': Glenville-Emmons citizens express concern surrounding battery energy storage system","link":"https://www.albertleatribune.com/2025/03/the-risk-is-not-zero-glenville-emmons-citizens-express-concern-surrounding-battery-energy-storage-system/","date":"2025-03-04","highlight":"Concerned citizens gathered on Monday evening to share concerns about a proposed battery energy storage system, including environmental hazards, increased risk of fire and low benefit for the community, among other issues."}],"updt":"2025-07-31"},{"state_abrv":"MA","state_name":"Massachusetts","muni":"Agawam","developer":"New Leaf Energy","developer_link":"https://www.newleafenergy.com/","project":null,"project_link":null,"bess_manufacturer":null,"bess_mw":5,"bess_mwh":20,"bess_duration":4,"google_maps_url":"https://www.google.com/maps/place/404+Silver+St,+Agawam,+MA+01001/@42.0599527,-72.6438488,731m/data=!3m1!1e3!4m6!3m5!1s0x89e6e3c16f8a99b9:0xf9054e1c2a577e9f!8m2!3d42.0607234!4d-72.6425827!16s%2Fg%2F11c4k3bbz2?entry=ttu&g_ep=EgoyMDI1MDcyMi4wIKXMDSoASAFQAw%3D%3D","lat":42.0603826671338,"lon":-72.64246651479584,"muni_websites":[{"name":"Town of Agawam","link":"https://www.agawam.ma.us/"},{"name":"Agawam Planning Board October 17, 2024","link":"https://www.agawam.ma.us/AgendaCenter/ViewFile/Minutes/_10172024-2032"}],"local_websites":[],"articles":[{"name":"Agawam residents file zoning appeal in Hampden Superior Court","link":"https://www.westernmassnews.com/2025/07/24/agawam-residents-file-zoning-appeal-hampden-superior-court/","date":"2025-07-23","highlight":"Agawam residents continue to speak out against the proposed lithium-ion battery storage facility at 404 silver street."}],"updt":"2025-07-31"},{"state_abrv":"NY","state_name":"New York","muni":"Tarrytown","developer":"Catalyze","developer_link":"https://catalyze.com/","project":"multiple?","project_link":"https://www.tarrytownny.gov/sites/g/files/vyhlif1306/f/agendas/tarrytown_120_white_plains_rd_bot_deck_v6_6-16-25_002.pdf","bess_manufacturer":"Tesla","bess_mw":null,"bess_mwh":null,"bess_duration":null,"google_maps_url":"https://www.google.com/maps/place/Tarrytown,+NY/@41.056358,-74.0269377,27767m/data=!3m1!1e3!4m6!3m5!1s0x89c2eac92b29513d:0x5f42558efd66726f!8m2!3d41.0762077!4d-73.8587461!16zL20vMHljZzA?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D","lat":41.06170889797122,"lon":-73.85766954467752,"muni_websites":[{"name":"Village of Tarrytown","link":"https://www.tarrytownny.gov/"}],"local_websites":[{"name":"Tarrytown Environmental Advisory Council","link":"https://tarrytownenvironmental.org/bess-comes-to-tarrytown/"}],"articles":[{"name":"Fire Officials Oppose Battery Energy Storage System in Tarrytown","link":"https://thehudsonindependent.com/fire-officials-oppose-battery-energy-storage-system-in-tarrytown/","date":"2025-06-30","highlight":"Lo­cal fire of­fi­cials are con­tin­u­ing to throw cold wa­ter on a pro­posed Bat­tery En­ergy Stor­age Sys­tem (BESS) at 120 White Plains Road in Tar­ry­town."},{"name":"Public hearing held on proposed Battery Energy Storage System in Tarrytown","link":"https://www.youtube.com/watch?v=Vw38j0WiXWA","date":"2025-06-03","highlight":"CBS News New York's Adi Guajardo sat in on the meeting, where board members and residents raised concerns and grilled representatives of the energy company seeking approval and touting savings."}],"updt":"2025-07-31"},{"state_abrv":"NY","state_name":"New York","muni":"St. Albans","developer":"NineDot Energy","developer_link":"https://nine.energy/","project":null,"project_link":null,"bess_manufacturer":null,"bess_mw":4.9,"bess_mwh":null,"bess_duration":null,"google_maps_url":"https://www.google.com/maps/place/180th+St+%26+Linden+Blvd,+Queens,+NY+11434/@40.69345,-74.4910601,293339m/data=!3m1!1e3!4m6!3m5!1s0x89c26148de583b0d:0x4483c67d3453bcc9!8m2!3d40.6922569!4d-73.7667041!16s%2Fg%2F11hb9v12pd?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D","lat":40.6922476270363,"lon":-73.76670752876946,"muni_websites":[],"local_websites":[],"articles":[{"name":"'We say no!': St. Albans residents protest battery storage site near homes and VA hospital","link":"https://qns.com/2025/06/st-albans-residents-protest-battery-storage-site/","date":"2025-06-09","highlight":"neighbors denounced Brooklyn-based NineDot Energy's plan to construct a 4.9-megawatt battery farm on the site of a former gas station, without community input or oversight. As many opponents note, an all-too-convenient tactic that raises suspicions of calculated regulatory evasion. Projects exceeding the 5 MW mark may trigger stricter permitting processes..."},{"name":"Op-Ed: Take Fears About Battery Storage Facilities Seriously","link":"https://brooklyndowntownstar.com/opinion/2025/07/18/guest-op-ed-take-fears-about-battery-storage-facilities-seriously/","date":"2025-07-18","highlight":"The time has come for a moratorium on any further construction of BESS centers, near schools and residential neighborhoods."}],"updt":"2025-07-31"},{"state_abrv":"CA","state_name":"California","muni":"San Juan Capistrano","developer":"Engie North America","developer_link":"https://www.engie-na.com/","project":"Compass Energy Storage","project_link":"https://compassenergystorage.com/the-project/","bess_manufacturer":"Tesla","bess_mw":250,"bess_mwh":1000,"bess_duration":4,"google_maps_url":"https://www.google.com/maps/@33.535857,-117.6775296,1189m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D","lat":33.5327140296162,"lon":-117.6772513028807,"muni_websites":[{"name":"City of San Juan Capistrano - BESS overview","link":"https://www.sanjuancapistrano.org/430/Battery-Energy-Storage-System-BESS-Overv"},{"name":"CEC - Compass Energy Storage Project","link":"https://www.energy.ca.gov/powerplant/battery-storage-system/compass-energy-storage-project"}],"local_websites":[{"name":"B.L.E.S.S.I.N. - Ban Lithium Energy Storage Systems in Neighborhoods","link":"https://blessinoc.org/about/"},{"name":"B.L.E.S.S.I.N. (facebook)","link":"https://www.facebook.com/stopthebess"}],"articles":[{"name":"OC leaders, residents push back against proposed battery storage facility","link":"https://www.foxla.com/news/oc-leaders-residents-pushing-back-against-proposed-battery-storage-facility","date":"2025-05-29","highlight":"Political leaders and residents in San Juan Capistrano oppose a proposed battery energy storage facility due to public safety concerns, particularly the risk of fire with limited access points."}],"updt":"2025-07-31"},{"state_abrv":"CA","state_name":"California","muni":"Watsonville","developer":"New Leaf Energy","developer_link":"https://www.newleafenergy.com/","project":"Seahawk Energy Storage","project_link":"https://www.seahawkenergystorage.com/","bess_manufacturer":null,"bess_mw":200,"bess_mwh":800,"bess_duration":4,"google_maps_url":"https://www.google.com/maps/place/90+Minto+Rd,+Watsonville,+CA+95076/@36.9508117,-121.7635877,854m/data=!3m1!1e3!4m6!3m5!1s0x808e1bb686b8a469:0xbb2c23dacc45b73e!8m2!3d36.9510791!4d-121.7590176!16s%2Fg%2F11cpkckq6j?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D","lat":36.95111995088226,"lon":-121.7590013713441,"muni_websites":[{"name":"Santa Cruz County - Community Development and Infrastructure","link":"https://cdi.santacruzcountyca.gov/UPC/GetInvolved/MajorProjectApplications.aspx"}],"local_websites":[{"name":"STOP Lithium BESS in Santa Cruz County","link":"https://www.stoplithiumbessinsantacruz.org/"},{"name":"STOP LITHIUM B.E.S.S. IN SANTA CRUZ COUNTY (facebook)","link":"https://www.facebook.com/groups/519407474020832/"}],"articles":[{"name":"Talks continue on Battery Energy Storage Systems","link":"https://pajaronian.com/talks-continue-on-battery-energy-storage-systems/","date":"2025-07-25","highlight":"About 150 people gathered in Santa Cruz July 17, for a third meeting held over the past few months to send the message that proposed Battery Energy Storage Systems (BESS) in Watsonville, Aptos and Santa Cruz are not welcome."}],"updt":"2025-07-31"},{"state_abrv":"CA","state_name":"California","muni":"Acton","developer":"Fullmark Energy","developer_link":"https://fullmarkenergy.com/","project":"Humidor Storage Project","project_link":"https://humidorstorage.com/","bess_manufacturer":null,"bess_mw":400,"bess_mwh":1600,"bess_duration":4,"google_maps_url":"https://www.google.com/maps/place/Acton,+CA/@34.4951623,-118.1234278,3499m/data=!3m1!1e3!4m6!3m5!1s0x80c2f69d9fd064ef:0x987ba0a9070667cc!8m2!3d34.469994!4d-118.1967418!16zL20vMHFfdm0?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D","lat":34.497552081952875,"lon":-118.12310557324203,"muni_websites":[{"name":"Acton Town Council","link":"https://actontowncouncil.org/"}],"local_websites":[{"name":"Acton Takes Action","link":"https://acton-bess-opposition-petition.actontakesaction.org/index.html"},{"name":"Acton/Agua Dulce REAL Community News","link":"https://www.facebook.com/groups/2046516502257039/about"}],"articles":[{"name":"Court date set for Acton battery storage project","link":"https://www.avpress.com/news/court-date-set-for-acton-battery-storage-project/article_7c7d9e2a-36b1-4798-bb92-e7d13d05dc67.html","date":"2025-07-15","highlight":"A controversial battery energy storage project in Acton is heading to court this week, as residents prepare to challenge the approval of the facility in Los Angeles County Superior Court on Thursday."}],"updt":"2025-07-31"},{"state_abrv":"CA","state_name":"California","muni":"Escondido","developer":"AES","developer_link":"https://www.aes.com/","project":"Seguro energy storage project","project_link":"https://www.aes.com/project/seguro-energy-storage-project","bess_manufacturer":null,"bess_mw":320,"bess_mwh":1280,"bess_duration":4,"google_maps_url":"https://www.google.com/maps/place/Milpas+Dr+%26+Country+Club+Dr,+West+Ridge,+CA+92029/@33.1228221,-117.1267164,675m/data=!3m1!1e3!4m6!3m5!1s0x80dbf5208ef5bced:0x8de132a754596cbb!8m2!3d33.1221134!4d-117.1274893!16s%2Fg%2F11gf3_wq9n?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D","lat":33.12218814790717,"lon":-117.1275139304041,"muni_websites":[{"name":"Escondido","link":"https://www.escondido.gov/"}],"local_websites":[{"name":"Stop Seguro","link":"https://www.stopseguro.org/"},{"name":"Stop The Seguro Battery Energy Storage System in Escondido (facebook)","link":"https://www.facebook.com/groups/184192198092935"}],"articles":[{"name":"Californian city introduces temporary moratorium on battery storage sites","link":"https://pv-magazine-usa.com/2024/10/11/californian-city-introduces-temporary-moratorium-on-battery-storage-sites/","date":"2024-10-11","highlight":"Calls for a ban on new BESS projects in San Diego County were made in the wake of a 17-day battery fire at the 250 MW/250 MWh Gateway Energy Storage Station in Otay Mesa in May 2024. On September 5, 2024, mandatory evacuation orders were issued in Escondido after a fire broke out at a BESS facility belonging to utility San Diego Gas & Electric."}],"updt":"2025-07-31"},{"state_abrv":"MA","state_name":"Massachusetts","muni":"Wendell","developer":"New Leaf Energy","developer_link":"","project":"Wendell Energy Storage Project","project_link":"https://www.newleafenergy.com/project/wendell-energy-storage","bess_manufacturer":null,"bess_mw":105,"bess_mwh":420,"bess_duration":4,"google_maps_url":"https://www.google.com/maps/place/Wendell,+MA/@42.540156,-72.4126255,15315m/data=!3m1!1e3!4m6!3m5!1s0x89e136df2cb4e975:0xc070a71a55076a55!8m2!3d42.5481852!4d-72.396722!16zL20vMHR6Z3c?entry=ttu&g_ep=EgoyMDI1MDcyNy4wIKXMDSoASAFQAw%3D%3D","lat":42.54848386827915,"lon":-72.39708948974521,"muni_websites":[{"name":"Wendell, MA - Town Government","link":"https://www.wendellmass.us/town-government/"}],"local_websites":[{"name":"No Assault & Batteries in Wendell MA","link":"https://nabunited.org/"}],"articles":[{"name":"Citizens group asks court to overturn AG decision on battery-storage bylaw in Wendell","link":"https://www.recorder.com/No-Assault-and-Batteries-asks-Land-Court-to-overturn-AG-s-decision-61427652","date":"2025-05-28","highlight":"A local citizens group called No Assault & Batteries (NAB) had vigorously opposed Lowell-based New Leaf Energy’s proposed construction of a 105-megawatt battery storage facility off Wendell Depot Road in Wendell. The company rescinded its proposal in the summer of 2024. NAB had proposed a bylaw regarding the licensing of battery energy storage systems, including those powered by lithium-ion batteries, and it was passed overwhelmingly at a special Town Meeting in May 2024 only to get rejected by the state Attorney General’s Office for failing to comply with procedural safeguards embedded into state zoning laws."}],"updt":"2025-07-31"},{"state_abrv":"NY","state_name":"New York","muni":"Hurley","developer":"Terra-Gen","developer_link":"https://terra-gen.com/","project":"Ulster Clean Energy","project_link":"https://ulstercleanenergy.com/","bess_manufacturer":null,"bess_mw":250,"bess_mwh":null,"bess_duration":null,"google_maps_url":"https://www.google.com/maps/place/Hurley,+NY/@42.4189782,-73.799889,282027m/data=!3m1!1e3!4m6!3m5!1s0x89dd0470bdd8f165:0x1aee7f88cefeb37c!8m2!3d41.9972928!4d-74.1048603!16zL20vMDFtZ3J6?entry=ttu&g_ep=EgoyMDI1MDcyNy4wIKXMDSoASAFQAw%3D%3D","lat":41.94592736909007,"lon":-74.10450648632535,"muni_websites":[{"name":"Town of Hurley","link":"https://www.townofhurley.org/"}],"local_websites":[{"name":"Citizens of the Town of Hurley","link":"https://www.facebook.com/groups/709145213585388/"}],"articles":[{"name":"Not in my backyard - Hurley residents speak out against battery plant","link":"https://midhudsonnews.com/2025/06/19/not-in-my-backyard-hurley-residents-speak-out-against-battery-plant/","date":"2025-06-19","highlight":"They were there to oppose the construction of a lithium-ion battery plant in their neighborhood. The facility, which is being proposed for the former site of the John A. Coleman Catholic High School, would be developed by Terra-Gen, a San Diego-based company, specializing in energy storage."}],"updt":"2025-07-31"},{"state_abrv":"WA","state_name":"Washington","muni":"Covington","developer":"Tenaska","developer_link":"https://renewables.tenaska.com/battery/","project":"Kingfisher Battery Energy Storage","project_link":"https://www.documentcloud.org/documents/23865621-kingfisher-presentation/","bess_manufacturer":null,"bess_mw":null,"bess_mwh":null,"bess_duration":null,"google_maps_url":"https://www.google.com/maps/place/Mattson+Middle+School/@47.3779301,-122.1201519,766m/data=!3m1!1e3!4m6!3m5!1s0x54905e4c69123853:0xb168ed1ecf4d057d!8m2!3d47.3778222!4d-122.1212928!16s%2Fm%2F076kbz_?entry=ttu&g_ep=EgoyMDI1MDcyNy4wIKXMDSoASAFQAw%3D%3D","lat":47.37768311989348,"lon":-122.12133202371379,"muni_websites":[{"name":"Covington - city government","link":"https://www.covingtonwa.gov/city_government/citygovernment.php"}],"local_websites":[{"name":"Stop the proposed Covington Battery Energy Storage System (BESS)","link":"https://www.facebook.com/groups/3162400907401094/"}],"articles":[{"name":"Covington residents want answers about controversial proposal to build battery storage facility","link":"https://www.fox13seattle.com/news/battery-storage-site-covington-bess","date":"2024-05-09","highlight":"There is a lot of opposition by Covington residents about a proposed battery storage facility in the city."}],"updt":"2025-07-31"},{"state_abrv":"CA","state_name":"California","muni":"Vacaville","developer":"NextEra","developer_link":"https://www.nexteraenergy.com/","project":"Corby Project","project_link":"https://www.nexteraenergyresources.com/corby-project.html","bess_manufacturer":"CATL","bess_mw":300,"bess_mwh":1200,"bess_duration":4,"google_maps_url":"https://www.google.com/maps/place/Byrnes+Rd,+California+95687/@38.3958783,-121.9066113,1343m/data=!3m1!1e3!4m6!3m5!1s0x80853ca917ee3cb5:0x7020585ed16915fd!8m2!3d38.3784056!4d-121.9059769!16s%2Fg%2F1tnqh6hl?entry=ttu&g_ep=EgoyMDI1MDcyNy4wIKXMDSoASAFQAw%3D%3D","lat":38.39521554017204,"lon":-121.90596086355978,"muni_websites":[{"name":"City of Vacaville","link":"https://www.cityofvacaville.gov/government"},{"name":"CEC - Corby Battery Energy Storage System Project","link":"https://www.energy.ca.gov/powerplant/battery-storage-system/corby-battery-energy-storage-system-project"}],"local_websites":[{"name":"Keep Vacaville Safe","link":"https://www.keepvacavillesafe.com/"}],"articles":[{"name":"Vacaville neighbors push back on proposed battery plant as energy company works to win favor","link":"https://www.cbsnews.com/sacramento/news/vacaville-neighbors-push-back-proposed-battery-plant/","date":"2025-07-24","highlight":"Some neighbors are sounding the alarm on the project, saying the public safety risks outweigh the benefits, and organizing a campaign against it."},{"name":"NextEra turns to California state regulator for 1.2GWh BESS to get around city's moratorium","link":"https://www.energy-storage.news/nextera-turns-to-california-state-regulator-for-1-2gwh-bess-to-get-around-citys-moratorium/","date":"2024-11-21","highlight":"NextEra Energy Resources (NEER) has become the next IPP to seek approval of a renewable energy development incorporating battery storage via the California Energy Commission's (CEC's) opt-in process..."}],"updt":"2025-07-31"}];var data__articles=[];data__projects.forEach(function(proj){proj.articles.forEach(function(article){article.state_abrv=proj.state_abrv;article.muni=proj.muni;article.lat=proj.lat;article.lon=proj.lon;data__articles.push(article)})});var shared__layout={topStart:'info',topEnd:'search',bottomStart:null,bottomEnd:['pageLength','paging']};var shared__columnDefs=[{orderable:!1,targets:[0]},{target:'.m__search',columnControl:[{target:1,content:['search']}]}];let table__projects=new DataTable('#projects',{responsive:!0,layout:shared__layout,data:data__projects,columns:[{data:null,className:'max-width-first-col text-center',render:function(data,type,row){return'<i class="text-black-25 fa-solid fa-plus"></i>'}},{data:null,className:'fw-bold',render:function(data,type,row){return row.state_abrv+', '+row.muni}},{data:'developer'},{data:'bess_mw',className:'text-end',render:function(data,type,row){if(type==='display'){return(data===null?"?":data)}
-return data}},{data:'bess_mwh',className:'text-end',render:function(data,type,row){if(type==='display'){return(data===null?"?":data)}
-return data}},{data:'bess_duration',className:'text-end',render:function(data,type,row){if(type==='display'){return(data===null?"?":data+'-hr')}
-return data}},{data:null,className:'td-max-width-sm',render:function(data,type,row){return(row.articles[0].date!==undefined?row.articles[0].date:'-')}},{data:'updt',className:'text-secondary td-max-width-sm'}],columnDefs:shared__columnDefs,order:[[1,'asc']]});let table__groups=new DataTable('#groups',{responsive:!0,layout:shared__layout,data:data__groups,columns:[{data:null,className:'max-width-first-col text-center',render:function(data,type,row){return'<i class="text-black-25 fa-solid fa-chevron-right"></i>'}},{data:null,className:'fw-bold',render:function(data,type,row){return row.state_abrv+', '+row.muni}},{data:'name',},{data:'type',className:'td-max-width-sm',render:function(data,type,row){if(row.type==='facebook'){return'<span class="d-none">'+data+'</span><i class="text-primary fa-brands fa-facebook-f me-1"></i><span class="text-primary">'+data+'</span>'}else if(row.type==='twitter'){return'<span class="d-none">'+data+'</span><i class="text-primary fa-brands fa-x-twitter me-1"></i><span class="text-primary">'+data+'</span>'}else if(row.type==='web'){return'<span class="d-none">'+data+'</span><i class="text-primary fa-solid fa-globe me-1"></i><span class="text-primary">'+data+'</span>'}else{return''}}},{data:'updt',className:'text-secondary td-max-width-sm'}],columnDefs:shared__columnDefs,order:[[1,'asc']]});let table__articles=new DataTable('#articles',{lengthMenu:[5,10,25,50,100],pageLength:100,responsive:!0,layout:shared__layout,data:data__articles,columns:[{data:null,className:'max-width-first-col text-center',render:function(data,type,row){return'<i class="text-black-25 fa-solid fa-chevron-right"></i>'}},{data:null,className:'fw-bold',render:function(data,type,row){return row.state_abrv+', '+row.muni}},{data:'name',render:function(data,type,row){return'<b>'+row.name+'</b><br />'+row.highlight}},{data:'date'}],columnDefs:shared__columnDefs,order:[[1,'asc']]});$('#projects tbody').on('click','tr',function(){var data=table__projects.row(this).data();buildOffCanvasLocation(data)});$('#groups tbody').on('click','tr',function(){var data=table__groups.row(this).data();window.open(data.link,'_blank')});$('#articles tbody').on('click','tr',function(){var data=table__articles.row(this).data();window.open(data.link,'_blank')});function openLink(linkText){window.open(linkText,'_blank')}
-function buildOffCanvasLocation(data){var content__developer='';if(data.developer!==null){if(data.developer_link!==null){content__developer=`
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Local Pushback</title>   
+    <!-- highchars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.10.0/proj4.js" integrity="sha512-e3rsOu6v8lmVnZylXpOq3DO/UxrCgoEMqosQxGygrgHlves9HTwQzVQ/dLO+nwSbOSAecjRD7Y/c4onmiBVo6w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/marker-clusters.js"></script>
+    <script src="https://code.highcharts.com/modules/coloraxis.js"></script>
+    <!-- datatables -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap5.css">
+
+    <link href="https://cdn.datatables.net/columncontrol/1.0.7/css/columnControl.dataTables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/columncontrol/1.0.7/js/dataTables.columnControl.min.js"></script>
+
+    <script src="https://cdn.datatables.net/responsive/3.0.5/js/dataTables.responsive.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.5/js/responsive.dataTables.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style type="text/css">
+        body { font-family: "Arial", sans-serif; font-size: 15px; }
+        .pagination {--bs-pagination-font-size: .8rem; }
+        .bd-navbar {
+            background-color: transparent;
+            box-shadow: 0 .5rem 1rem #00000026, inset 0 -1px #ffffff26;
+        }
+        .brand { color: #fff; }
+        .map-container {
+            height: 82vh;
+            min-width: 310px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .loading {
+            margin-top: 10em;
+            text-align: center;
+            color: gray;
+        }
+        .cursor-pointer { cursor: pointer; }
+        td.cursor-pointer:hover i.fa-plus {
+            color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+        }
+        td.max-width-first-col { max-width: 120px; }
+        td.td-max-width-sm { max-width: 150px; }
+        .text-black-25 { color: rgba(0, 0, 0, .25); }
+        #projects > tbody > tr:nth-child(odd) td,
+        #groups > tbody > tr:nth-child(odd) td,
+        #articles > tbody > tr:nth-child(odd) td {
+            /* using this as substitute for ".table-striped" class name */
+            background-color: var(--bs-table-striped-bg);
+        }
+        #projects tbody tr:hover td,
+        #groups tbody tr:hover td,
+        #articles tbody tr:hover td,
+        .link-row:hover td {
+            cursor: pointer;
+            background-color:  #ccf0ff !important;
+        }
+        .link-row td i { color: var(--bs-link-color); }
+        .link-row:hover td i { color: var(--bs-link-hover-color); }
+        #projects tbody tr:hover .text-black-25,
+        #groups tbody tr:hover .text-black-25,
+        #articles tbody tr:hover .text-black-25 {
+            color: rgba(0, 0, 0, .75); 
+        }
+        .dt-info { font-weight: bold; }
+        .callout {
+            padding: 1.25rem;
+            margin-top: 1.25rem;
+            margin-bottom: 1.25rem;
+            background-color: var(--bd-callout-bg, var(--bs-gray-100));
+            border-left: .25rem solid var(--bd-callout-border, var(--bs-gray-300));
+        }
+        .link-row:hover .callout { background-color: transparent; border-left-color: var(--bd-callout-border, var(--bs-info)); }
+    </style>
+</head>
+<body>
+<nav class="navbar sticky-top bd-navbar bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <div class="brand"><i class="fa-solid fa-user-group me-2"></i>Local pushback on lithium-ion BESS projects</div>
+    </div>
+</nav>
+<div class="container-fluid mt-2">
+
+<ul class="nav nav-underline" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="projects-tab" data-bs-toggle="tab" data-bs-target="#projects-tab-pane" type="button" role="tab" aria-controls="projects-tab-pane" aria-selected="true">Projects</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="groups-tab" data-bs-toggle="tab" data-bs-target="#groups-tab-pane" type="button" role="tab" aria-controls="groups-tab-pane" aria-selected="false">Groups</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="articles-tab" data-bs-toggle="tab" data-bs-target="#articles-tab-pane" type="button" role="tab" aria-controls="articles-tab-pane" aria-selected="false">Articles</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="maps-tab" data-bs-toggle="tab" data-bs-target="#maps-tab-pane" type="button" role="tab" aria-controls="maps-tab-pane" aria-selected="false">Map</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="search-tab" data-bs-toggle="tab" data-bs-target="#search-tab-pane" type="button" role="tab" aria-controls="search-tab-pane" aria-selected="false">Search</button>
+    </li>
+</ul>
+
+<div class="tab-content" id="mainTabContent">
+    <div class="tab-pane fade show active pb-3" id="projects-tab-pane" role="tabpanel" aria-labelledby="projects-tab" tabindex="0">
+        <table id="projects" class="table table-sm">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="m__search">Location</th>
+                    <th class="m__search">Developer</th>
+                    <th class="m__search">MW</th>
+                    <th class="m__search">MWh</th>
+                    <th class="m__search">Duration</th>
+                    <th class="m__search">Article</th>
+                    <th class="m__search text-secondary">updated</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="tab-pane fade pb-3" id="groups-tab-pane" role="tabpanel" aria-labelledby="groups-tab" tabindex="0">
+        <table id="groups" class="table table-sm">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="m__search">Location</th>
+                    <th class="m__search">Group</th>
+                    <th class="m__search">type</th>
+                    <th class="m__search text-secondary">updated</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="tab-pane fade" id="articles-tab-pane" role="tabpanel" aria-labelledby="articles-tab" tabindex="0">
+        <div class="pb-4">
+            <table id="articles" class="table table-sm">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="m__search">Location</th>
+                        <th class="m__search">Article</th>
+                        <th class="m__search">Date</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="maps-tab-pane" role="tabpanel" aria-labelledby="maps-tab" tabindex="0">
+        <div class="map-container" id="map-projects-container"></div>
+    </div>
+    <div class="tab-pane fade" id="search-tab-pane" role="tabpanel" aria-labelledby="search-tab" tabindex="0">
+        <div class="container-fluid">
+            <p class="px-2 pt-3">Google search terms for varied time frames</p>
+            <div class="row">
+                <div class="col">   
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold">proposed battery energy storage system residents oppose</td>
+                            </tr>
+                            <tr class="link-row" onclick="openLink('https://www.google.com/search?q=proposed+battery+energy+storage+system+residents+oppose&sca_esv=a3944c8b8683a63b&source=lnt&tbs=qdr:d&sa=X&ved=2ahUKEwi41c7ag_iKAxW5EzQIHcIKPFkQpwV6BAgHEAg&biw=1163&bih=539&dpr=1.65')">
+                                <td><i class="fa-solid fa-chevron-right me-2"></i>Past 24 hours</td>
+                            </tr>
+                            <tr class="link-row" onclick="openLink('https://www.google.com/search?q=proposed+battery+energy+storage+system+residents+oppose&sca_esv=a3944c8b8683a63b&source=lnt&tbs=qdr:w&sa=X&ved=2ahUKEwjIuYPNr-uOAxUF38kDHQQXOdYQpwV6BAgHEAg&biw=1024&bih=474&dpr=1.88')">
+                                <td><i class="fa-solid fa-chevron-right me-2"></i>Past week</td>
+                            </tr>
+                            <tr class="link-row" onclick="openLink('https://www.google.com/search?q=proposed+battery+energy+storage+system+residents+oppose&sca_esv=a3944c8b8683a63b&source=lnt&tbs=qdr:m&sa=X&ved=2ahUKEwjf2onfr-uOAxUA5ckDHRuuABEQpwV6BAgDEAk&biw=1024&bih=474&dpr=1.88')">
+                                <td><i class="fa-solid fa-chevron-right me-2"></i>Past month</td>
+                            </tr>
+                            <tr class="link-row" onclick="openLink('https://www.google.com/search?q=proposed+battery+energy+storage+system+residents+oppose&sca_esv=a3944c8b8683a63b&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwjNzuLrseuOAxVD4skDHec6NDIQpwV6BAgDEAo&biw=1024&bih=474&dpr=1.88')">
+                                <td><i class="fa-solid fa-chevron-right me-2"></i>Past year</td>
+                            </tr>
+                            <tr class="link-row" onclick="openLink('https://www.google.com/search?q=proposed+battery+energy+storage+system+residents+oppose&oq=proposed+battery+energy+storage+system+residents+oppose')">
+                                <td><i class="fa-solid fa-chevron-right me-2"></i>Any time</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold">no lithium BESS facebook</td>
+                            </tr>
+                            <tr class="link-row" onclick="openLink('https://www.google.com/search?q=no+lithium+BESS+facebook&sca_esv=5742d4a9a3aae0a9&source=lnt&tbs=qdr:d&sa=X&ved=2ahUKEwjThKG6xOuOAxUMGtAFHc8eOW4QpwV6BAgDEAc&biw=1024&bih=474&dpr=1.88')">
+                                <td><i class="fa-solid fa-chevron-right me-2"></i>Past 24 hours</td>
+                            </tr>
+                            <tr class="link-row" onclick="openLink('https://www.google.com/search?q=no+lithium+BESS+facebook&sca_esv=5742d4a9a3aae0a9&source=lnt&tbs=qdr:w&sa=X&ved=2ahUKEwjvl5K0xOuOAxXSJNAFHW0zE_MQpwV6BAgEEAg&biw=1024&bih=474&dpr=1.88')">
+                                <td><i class="fa-solid fa-chevron-right me-2"></i>Past week</td>
+                            </tr>
+                            <tr class="link-row" onclick="openLink('https://www.google.com/search?q=no+lithium+BESS+facebook&sca_esv=5742d4a9a3aae0a9&source=lnt&tbs=qdr:m&sa=X&ved=2ahUKEwi0r_GrxOuOAxXALtAFHSMYByMQpwV6BAgJEAk&biw=1024&bih=474&dpr=1.88')">
+                                <td><i class="fa-solid fa-chevron-right me-2"></i>Past month</td>
+                            </tr>
+                            <tr class="link-row" onclick="openLink('https://www.google.com/search?q=no+lithium+BESS+facebook&sca_esv=5742d4a9a3aae0a9&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwju09qixOuOAxWeLtAFHaVsII8QpwV6BAgFEAo&biw=1024&bih=474&dpr=1.88')">
+                                <td><i class="fa-solid fa-chevron-right me-2"></i>Past year</td>
+                            </tr>
+                            <tr class="link-row" onclick="openLink('https://www.google.com/search?q=no+lithium+BESS+facebook')">
+                                <td><i class="fa-solid fa-chevron-right me-2"></i>Any time</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold">moratorium lithium Battery Energy Storage</td>
+                            </tr>
+                            <tr class="link-row" onclick="openLink('https://www.google.com/search?q=moratorium+lithium+Battery+Energy+Storage&sca_esv=bdc65ffe85f8e301&source=lnt&tbs=qdr:d&sa=X&ved=2ahUKEwjJjc_0z-uOAxXCGtAFHVmMNFUQpwV6BAgFEAc&biw=1024&bih=474&dpr=1.88')">
+                                <td><i class="fa-solid fa-chevron-right me-2"></i>Past 24 hours</td>
+                            </tr>
+                            <tr class="link-row" onclick="openLink('https://www.google.com/search?q=moratorium+lithium+Battery+Energy+Storage&sca_esv=bdc65ffe85f8e301&source=lnt&tbs=qdr:w&sa=X&ved=2ahUKEwisoqKg0OuOAxXuD9AFHZGSK64QpwV6BAgDEAg&biw=1024&bih=474&dpr=1.88')">
+                                <td><i class="fa-solid fa-chevron-right me-2"></i>Past week</td>
+                            </tr>
+                            <tr class="link-row" onclick="openLink('https://www.google.com/search?q=moratorium+lithium+Battery+Energy+Storage&sca_esv=bdc65ffe85f8e301&source=lnt&tbs=qdr:m&sa=X&ved=2ahUKEwi99rGZ0OuOAxVYwskDHZW-NgwQpwV6BAgFEAk&biw=1024&bih=474&dpr=1.88')">
+                                <td><i class="fa-solid fa-chevron-right me-2"></i>Past month</td>
+                            </tr>
+                            <tr class="link-row" onclick="openLink('https://www.google.com/search?q=moratorium+lithium+Battery+Energy+Storage&sca_esv=bdc65ffe85f8e301&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwiTz-WO0OuOAxXdmYkEHSeOOEkQpwV6BAgHEAo&biw=1024&bih=474&dpr=1.88')">
+                                <td><i class="fa-solid fa-chevron-right me-2"></i>Past year</td>
+                            </tr>
+                            <tr class="link-row" onclick="openLink('https://www.google.com/search?q=moratorium+lithium+Battery+Energy+Storage')">
+                                <td><i class="fa-solid fa-chevron-right me-2"></i>Any time</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col">
+                    <div class="callout">Add or modify search terms as needed for more specific results.</div>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="detailsOffcanvas" aria-labelledby="detailsOffcanvasLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title mb-1" id="detailsOffcanvasLabel">Row Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <!-- Content will be dynamically loaded here -->
+        <div id="offcanvasContent"></div>
+    </div>
+</div>
+
+</div>
+<script type="text/javascript">
+/**************************/
+/* Datatables             */
+/**************************/
+// https://jsoneditoronline.org
+// Use value of --> null for empty, non-array values.
+// Use value of [] for empty arrays.
+
+// TODO:
+// 2. Google Analytics script
+// 3. minify code
+// 4. Kapwing to record demo video
+// 5. table of data for BESS moratoriums? or same data sources?
+var data__groups = [
+    {
+        "state_abrv": "TX",
+        "muni": "statewide",
+        "name": "Don't B.E.S.S with Texas",
+        "link": "https://x.com/DntbesswTexas",
+        "type": "twitter",
+        "updt": "2025-08-02"
+    },
+    {
+        "state_abrv": "TX",
+        "muni": "statewide",
+        "name": "Don't B.E.S.S with Texas",
+        "link": "https://www.facebook.com/groups/1140787914186041/",
+        "type": "facebook",
+        "updt": "2025-08-02"
+    },
+        {
+        "state_abrv": "TX",
+        "muni": "statewide",
+        "name": "Don't B.E.S.S with Texas",
+        "link": "https://dontbesswithtexas.com/",
+        "type": "web",
+        "updt": "2025-08-02"
+    },
+    {
+        "state_abrv": "GA",
+        "muni": "Carroll County",
+        "name": "Citizens Against Rezoning for a Battery Storage Facility in Carroll Co Ga",
+        "link": "https://www.facebook.com/groups/462837076797565",
+        "type": "facebook",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "WA",
+        "muni": "Covington",
+        "name": "Stop the proposed Covington Battery Energy Storage System (BESS)",
+        "link": "https://www.facebook.com/groups/3162400907401094/",
+        "type": "facebook",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "CA",
+        "muni": "Santa Cruz County",
+        "name": "STOP LITHIUM B.E.S.S. IN SANTA CRUZ COUNTY",
+        "link": "https://www.facebook.com/groups/519407474020832/",
+        "type": "facebook",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "CA",
+        "muni": "Santa Cruz County",
+        "name": "STOP Lithium B.E.S.S. in Santa Cruz County",
+        "link": "https://www.stoplithiumbessinsantacruz.org/",
+        "type": "web",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "WA",
+        "muni": "Sedro Woolley",
+        "name": "STOP - BESS Sedro Woolley - Stewards Of Skagit",
+        "link": "https://www.facebook.com/groups/1054570489577476/?_rdr",
+        "type": "facebook",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "WA",
+        "muni": "Sedro Woolley",
+        "name": "Stewards of Skagit",
+        "link": "https://www.stewardsofskagit.org/",
+        "type": "web",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "CA",
+        "muni": "San Juan Capistrano",
+        "name": "BLESSIN - Ban Lithium Energy Storage Systems in Neighborhoods",
+        "link": "https://www.facebook.com/stopthebess/?_rdr",
+        "type": "facebook",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "CA",
+        "muni": "San Juan Capistrano",
+        "name": "BLESSIN - Ban Lithium Energy Storage Systems in Neighborhoods",
+        "link": "https://blessinoc.org/about/",
+        "type": "web",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "CA",
+        "muni": "Acton",
+        "name": "Acton Takes Action Community Task Force",
+        "link": "https://acton-bess-opposition-petition.actontakesaction.org/index.html",
+        "type": "web",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "CA",
+        "muni": "Escondido",
+        "name": "Stop The Seguro Battery Energy Storage System in Escondido",
+        "link": "https://www.facebook.com/groups/184192198092935/",
+        "type": "facebook",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "CA",
+        "muni": "Escondido",
+        "name": "Stop Seguro",
+        "link": "https://www.stopseguro.org/",
+        "type": "web",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "ON",
+        "muni": "Armour Township",
+        "name": "Armour Township: Say NO to Lithium Battery Storage in Our Community",
+        "link": "https://www.facebook.com/groups/4069792796587028/",
+        "type": "facebook",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "ON",
+        "muni": "Dunrobin",
+        "name": "Stop Marchurst BESS",
+        "link": "https://stopwestcarletonbess.ca/",
+        "type": "web",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "NY",
+        "muni": "New York City",
+        "name": "NYC Residents against Battery Energy Storage Sites (BESS)",
+        "link": "https://www.facebook.com/groups/590154887370078/",
+        "type": "facebook",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "NY",
+        "muni": "Long Island",
+        "name": "Protect Our Coast - LINY (North Shore)",
+        "link": "https://www.facebook.com/groups/991457282393656/about",
+        "type": "facebook",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "NY",
+        "muni": "West Seneca",
+        "name": "Citizens for responsible zoning in West Seneca",
+        "link": "https://www.facebook.com/wsrespzoning/",
+        "type": "facebook",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "NY",
+        "muni": "Town of Islip",
+        "name": "Stop the Furrows Road Project",
+        "link": "https://www.facebook.com/groups/stopthedump/",
+        "type": "facebook",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "MA",
+        "muni": "Wendell",
+        "name": "No Assault & Batteries in Wendell MA",
+        "link": "https://nabunited.org/",
+        "type": "web",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "NY",
+        "muni": "Hurley",
+        "name": "Citizens of the Town of Hurley",
+        "link": "https://www.facebook.com/groups/709145213585388/",
+        "type": "facebook",
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "CA",
+        "muni": "Vacaville",
+        "name": "Keep Vacaville Safe",
+        "link": "https://www.keepvacavillesafe.com/",
+        "type": "web",
+        "updt": "2025-07-31"
+    }
+];
+
+var data__projects = [
+    { 
+        "state_abrv": "NY",
+        "state_name": "New York",
+        "muni": "Hauppague",
+        "developer": "Key Capture Energy",
+        "developer_link": "https://keycaptureenergy.com/",
+        "project": "Key Capture Energy - news",
+        "project_link": "https://keycaptureenergy.com/lipa-board-of-trustees-approve-two-utility-scale-battery-energy-storage-contracts/",
+        "bess_manufacturer": null,
+        "bess_mw": 79,
+        "bess_mwh": null,
+        "bess_duration": null,
+        "google_maps_url": "https://www.google.com/maps/place/220+Rabro+Dr,+Hauppauge,+NY+11788/@40.8130149,-73.2176864,1320m/data=!3m1!1e3!4m6!3m5!1s0x89e830efe6b54d77:0x10908824b94b1dbf!8m2!3d40.8122843!4d-73.2171878!16s%2Fg%2F11cpdsl0kc?entry=ttu&g_ep=EgoyMDI1MDczMC4wIKXMDSoASAFQAw%3D%3D",
+        "lat": 40.81228858218732,
+        "lon": -73.2171900197015,
+        "muni_websites": [
+            {
+                "name": "Hauppauge Fire District",
+                "link": "https://www.hauppaugefiredistrict.com/"
+            },
+            { 
+                "name": "Hauppauge Fire Department", 
+                "link": "https://www.hauppaugefiredepartment.org/" 
+            }, 
+            {
+                "name": "Town of Islip",
+                "link": "https://islipny.gov/"
+            }
+        ],
+        "local_websites": [],
+        "articles": [
+            {
+                "name": "Hauppauge Fire District - video about lithium BESS project",
+                "link": "https://x.com/HauppaugeFire/status/1942365733318529494",
+                "date": "2025-07-08",
+                "highlight": "Stop the 79 megawatt Lithium Battery Energy Storage System planned for 220 Rabro Drive in Hauppauge."
+            },
+            { 
+                "name": "LIPA Approves Battery Storage at Site of Shuttered Shoreham Nuclear Power Plant",
+                "link": "https://www.eastendbeacon.com/lipa-approves-battery-storage-at-site-of-shuttered-shoreham-nuclear-power-plant/",
+                "date": "2024-12-19",
+                "highlight": "Both projects are proposed by Key Capture Energy, a company that has in the past proposed Battery Energy Storage Systems (BESS) on the East End. LIPA announced Wednesday that both are slated to use lithium iron phosphate batteries, a technology that is believed in the industry to be less volatile and less prone to fire risk than the lithium ion batteries being used in many BESS facilities operating today."
+            }
+        ],
+        "updt": "2025-08-02"
+    },
+    { 
+        "state_abrv": "ON",
+        "state_name": "Ontario (Canada)",
+        "muni": "Dunrobin",
+        "developer": "Evolugen",
+        "developer_link": "https://evolugen.com/",
+        "project": "South March BESS",
+        "project_link": "https://evolugen.com/facilities/south-march-bess/",
+        "bess_manufacturer": null,
+        "bess_mw": 250,
+        "bess_mwh": 1000,
+        "bess_duration": 4,
+        "google_maps_url": "https://www.google.com/maps/place/Dunrobin,+ON+K0A+1T0,+Canada/@45.4239505,-76.0197507,5531m/data=!3m1!1e3!4m6!3m5!1s0x4cd1f0a6466f49e3:0x78e71bca49870f21!8m2!3d45.4222567!4d-76.020319!16zL20vMDcwN3lm?entry=ttu&g_ep=EgoyMDI1MDcyOC4wIKXMDSoASAFQAw%3D%3D",
+        "lat": 45.423172283521716,
+        "lon": -76.02078805716083,
+        "muni_websites": [
+            { 
+                "name": "Ottawa - Battery Energy Storage Systems (BESS) Provisions",
+                "link": "https://engage.ottawa.ca/renewable-energy-generation" 
+            }
+        ],
+        "local_websites": [
+            { 
+                "name": "Stop Marchurst BESS", 
+                "link": "https://stopwestcarletonbess.ca/" 
+            }
+        ],
+        "articles": [
+            { 
+                "name": "Battery project highlights clash between city's energy goals and local concerns",
+                "link": "https://capitalcurrent.ca/battery-project-highlights-clash-between-citys-energy-goals-and-local-concerns/",
+                "date": "2025-07-27",
+                "highlight": "A massive energy storage facility to be located in rural west-end Ottawa was recently approved by city council, but remains a contentious project among locals in the area."
+            }
+        ],
+        "updt": "2025-07-31"
+    },
+    { 
+        "state_abrv": "KS",
+        "state_name": "Kansas",
+        "muni": "Halstead",
+        "developer": "Concurrent",
+        "developer_link": "https://concurrentllc.com/concurrent-plans-to-develop-200-megawatts-of-battery-storage-in-kansas-to-improve-southwest-power-pools-grid-reliability",
+        "project": "Tallgrass Prairie Energy Center",
+        "project_link": "https://tallgrassprairieenergystorage.com/",
+        "bess_manufacturer": null,
+        "bess_mw": 200,
+        "bess_mwh": 800,
+        "bess_duration": 4,
+        "google_maps_url": "https://www.google.com/maps/place/Halstead,+KS+67056/@38.0008382,-97.4987585,6033m/data=!3m1!1e3!4m6!3m5!1s0x87bb3ea413269789:0x6764d06545a5661b!8m2!3d38.0030784!4d-97.5060144!16zL20vMHQ3OG4?entry=ttu&g_ep=EgoyMDI1MDcyOC4wIKXMDSoASAFQAw%3D%3D",
+        "lat": 37.99952228403701,
+        "lon": -97.50783306442914,
+        "muni_websites": [
+            { 
+                "name": "City of Halstead", 
+                "link": "https://www.halsteadks.com/" 
+            }
+        ],
+        "local_websites": [],
+        "articles": [
+            { 
+                "name": "Petition to block battery energy storage system (BESS) in Halstead shot down",
+                "link": "https://www.kwch.com/2025/07/09/petition-block-battery-energy-storage-system-bess-halstead-shot-down/",
+                "date": "2025-07-08",
+                "highlight": "Residents in Halstead are fighting to prevent the construction of a Battery Energy Storage System (BESS) in town."
+            },
+            {
+                "name": "Commission places moratorium on BESS in unincorporated Harvey County",
+                "link": "https://www.harveycounty.gov/commission-places-moratorium-on-bess-in-unincorporated-harvey-county",
+                "date": "2025-07-10",
+                "highlight": "The decision is only applicable to the rural portions of Harvey County. Municipalities maintain home rule authority over their jurisdictions."
+            }
+        ],
+        "updt": "2025-07-31"
+    },
+    { 
+        "state_abrv": "MN",
+        "state_name": "Minnesota",
+        "muni": "Glenville",
+        "developer": "Spearmint Energy",
+        "developer_link": "https://spearmintenergy.com/",
+        "project": "Midwater Battery Energy Storage",
+        "project_link": "https://www.midwaterbattery.com/",
+        "bess_manufacturer": null,
+        "bess_mw": 150,
+        "bess_mwh": null,
+        "bess_duration": null,
+        "google_maps_url": "https://www.google.com/maps/place/Glenville,+MN+56036/@43.5687168,-93.2637421,8650m/data=!3m1!1e3!4m6!3m5!1s0x87f13ac0a9a32acf:0x7093875b8d2f5589!8m2!3d43.5707905!4d-93.2835397!16zL20vMHZfbjI?entry=ttu&g_ep=EgoyMDI1MDcyOC4wIKXMDSoASAFQAw%3D%3D",
+        "lat": 43.56117200870092,
+        "lon": -93.2609761665855,
+        "muni_websites": [
+            { 
+                "name": "Freeborn County Board of Commissioners", 
+                "link": "https://www.co.freeborn.mn.us/122/Board-of-Commissioners" 
+            },
+            {
+                "name": "MN Commerce Dept. - Midwater Energy Storage Project",
+                "link": "https://apps.commerce.state.mn.us/eera/web/project/15971"
+            }
+        ],
+        "local_websites": [],
+        "articles": [
+            { 
+                "name": "Freeborn commissioners oppose energy storage facility plan",
+                "link": "https://www.kaaltv.com/news/freeborn-commissioners-oppose-energy-storage-facility-plan/",
+                "date": "2025-04-17",
+                "highlight": "The Freeborn County Commissioners’ Board formally opposed building an energy storage facility near the Shell Rock River."
+            },
+            {
+                "name": "'The risk is not zero': Glenville-Emmons citizens express concern surrounding battery energy storage system",
+                "link": "https://www.albertleatribune.com/2025/03/the-risk-is-not-zero-glenville-emmons-citizens-express-concern-surrounding-battery-energy-storage-system/",
+                "date": "2025-03-04",
+                "highlight": "Concerned citizens gathered on Monday evening to share concerns about a proposed battery energy storage system, including environmental hazards, increased risk of fire and low benefit for the community, among other issues."
+            }
+        ],
+        "updt": "2025-07-31"
+    },
+    {
+        "state_abrv": "MA",
+        "state_name": "Massachusetts",
+        "muni": "Agawam",
+        "developer": "New Leaf Energy",
+        "developer_link": "https://www.newleafenergy.com/",
+        "project": null,
+        "project_link": null,
+        "bess_manufacturer": null,
+        "bess_mw": 5,
+        "bess_mwh": 20,
+        "bess_duration": 4,
+        "google_maps_url": "https://www.google.com/maps/place/404+Silver+St,+Agawam,+MA+01001/@42.0599527,-72.6438488,731m/data=!3m1!1e3!4m6!3m5!1s0x89e6e3c16f8a99b9:0xf9054e1c2a577e9f!8m2!3d42.0607234!4d-72.6425827!16s%2Fg%2F11c4k3bbz2?entry=ttu&g_ep=EgoyMDI1MDcyMi4wIKXMDSoASAFQAw%3D%3D",
+        "lat": 42.0603826671338,
+        "lon": -72.64246651479584,
+        "muni_websites": [
+            { 
+                "name": "Town of Agawam", 
+                "link": "https://www.agawam.ma.us/" 
+            },
+            {
+                "name": "Agawam Planning Board October 17, 2024",
+                "link": "https://www.agawam.ma.us/AgendaCenter/ViewFile/Minutes/_10172024-2032"
+            }
+        ],
+        "local_websites": [],
+        "articles": [
+            { 
+                "name": "Agawam residents file zoning appeal in Hampden Superior Court",
+                "link": "https://www.westernmassnews.com/2025/07/24/agawam-residents-file-zoning-appeal-hampden-superior-court/",
+                "date": "2025-07-23",
+                "highlight": "Agawam residents continue to speak out against the proposed lithium-ion battery storage facility at 404 silver street."
+            }
+        ],
+        "updt": "2025-07-31"
+    },
+    { 
+        "state_abrv": "NY",
+        "state_name": "New York",
+        "muni": "Tarrytown",
+        "developer": "Catalyze",
+        "developer_link": "https://catalyze.com/",
+        "project": "multiple?",
+        "project_link": "https://www.tarrytownny.gov/sites/g/files/vyhlif1306/f/agendas/tarrytown_120_white_plains_rd_bot_deck_v6_6-16-25_002.pdf",
+        "bess_manufacturer": "Tesla",
+        "bess_mw": null,
+        "bess_mwh": null,
+        "bess_duration": null,
+        "google_maps_url": "https://www.google.com/maps/place/Tarrytown,+NY/@41.056358,-74.0269377,27767m/data=!3m1!1e3!4m6!3m5!1s0x89c2eac92b29513d:0x5f42558efd66726f!8m2!3d41.0762077!4d-73.8587461!16zL20vMHljZzA?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D",
+        "lat": 41.06170889797122, 
+        "lon": -73.85766954467752,
+        "muni_websites": [
+            { 
+                "name": "Village of Tarrytown", 
+                "link": "https://www.tarrytownny.gov/" 
+            }
+        ],
+        "local_websites": [
+            {
+                "name": "Tarrytown Environmental Advisory Council",
+                "link": "https://tarrytownenvironmental.org/bess-comes-to-tarrytown/"
+            }
+        ],
+        "articles": [
+            { 
+                "name": "Fire Officials Oppose Battery Energy Storage System in Tarrytown",
+                "link": "https://thehudsonindependent.com/fire-officials-oppose-battery-energy-storage-system-in-tarrytown/",
+                "date": "2025-06-30",
+                "highlight": "Lo­cal fire of­fi­cials are con­tin­u­ing to throw cold wa­ter on a pro­posed Bat­tery En­ergy Stor­age Sys­tem (BESS) at 120 White Plains Road in Tar­ry­town."
+            },
+            { 
+                "name": "Public hearing held on proposed Battery Energy Storage System in Tarrytown",
+                "link": "https://www.youtube.com/watch?v=Vw38j0WiXWA",
+                "date": "2025-06-03",
+                "highlight": "CBS News New York's Adi Guajardo sat in on the meeting, where board members and residents raised concerns and grilled representatives of the energy company seeking approval and touting savings."
+            }
+        ],
+        "updt": "2025-07-31"
+    },
+    { 
+        "state_abrv": "NY",
+        "state_name": "New York",
+        "muni": "St. Albans",
+        "developer": "NineDot Energy",
+        "developer_link": "https://nine.energy/",
+        "project": null,
+        "project_link": null,
+        "bess_manufacturer": null,
+        "bess_mw": 4.9,
+        "bess_mwh": null,
+        "bess_duration": null,
+        "google_maps_url": "https://www.google.com/maps/place/180th+St+%26+Linden+Blvd,+Queens,+NY+11434/@40.69345,-74.4910601,293339m/data=!3m1!1e3!4m6!3m5!1s0x89c26148de583b0d:0x4483c67d3453bcc9!8m2!3d40.6922569!4d-73.7667041!16s%2Fg%2F11hb9v12pd?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D",
+        "lat": 40.6922476270363,
+        "lon": -73.76670752876946,
+        "muni_websites": [],
+        "local_websites": [],
+        "articles": [
+            { 
+                "name": "'We say no!': St. Albans residents protest battery storage site near homes and VA hospital",
+                "link": "https://qns.com/2025/06/st-albans-residents-protest-battery-storage-site/",
+                "date": "2025-06-09",
+                "highlight": "neighbors denounced Brooklyn-based NineDot Energy's plan to construct a 4.9-megawatt battery farm on the site of a former gas station, without community input or oversight. As many opponents note, an all-too-convenient tactic that raises suspicions of calculated regulatory evasion. Projects exceeding the 5 MW mark may trigger stricter permitting processes..."
+            },
+            {
+                "name": "Op-Ed: Take Fears About Battery Storage Facilities Seriously",
+                "link": "https://brooklyndowntownstar.com/opinion/2025/07/18/guest-op-ed-take-fears-about-battery-storage-facilities-seriously/",
+                "date": "2025-07-18",
+                "highlight": "The time has come for a moratorium on any further construction of BESS centers, near schools and residential neighborhoods."
+            }
+        ],
+        "updt": "2025-07-31"
+    },
+    { 
+        "state_abrv": "CA",
+        "state_name": "California",
+        "muni": "San Juan Capistrano",
+        "developer": "Engie North America",
+        "developer_link": "https://www.engie-na.com/",
+        "project": "Compass Energy Storage",
+        "project_link": "https://compassenergystorage.com/the-project/",
+        "bess_manufacturer": "Tesla",
+        "bess_mw": 250,
+        "bess_mwh": 1000,
+        "bess_duration": 4,
+        "google_maps_url": "https://www.google.com/maps/@33.535857,-117.6775296,1189m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D",
+        "lat": 33.5327140296162,
+        "lon": -117.6772513028807,
+        "muni_websites": [
+            { 
+                "name": "City of San Juan Capistrano - BESS overview", 
+                "link": "https://www.sanjuancapistrano.org/430/Battery-Energy-Storage-System-BESS-Overv" 
+            },
+            {
+                "name": "CEC - Compass Energy Storage Project",
+                "link": "https://www.energy.ca.gov/powerplant/battery-storage-system/compass-energy-storage-project"
+            }
+        ],
+        "local_websites": [
+            { 
+                "name": "B.L.E.S.S.I.N. - Ban Lithium Energy Storage Systems in Neighborhoods", 
+                "link": "https://blessinoc.org/about/" 
+            },
+            {
+                "name": "B.L.E.S.S.I.N. (facebook)",
+                "link": "https://www.facebook.com/stopthebess"
+            }
+        ],
+        "articles": [
+            { 
+                "name": "OC leaders, residents push back against proposed battery storage facility",
+                "link": "https://www.foxla.com/news/oc-leaders-residents-pushing-back-against-proposed-battery-storage-facility",
+                "date": "2025-05-29",
+                "highlight": "Political leaders and residents in San Juan Capistrano oppose a proposed battery energy storage facility due to public safety concerns, particularly the risk of fire with limited access points."
+            }
+        ],
+        "updt": "2025-07-31"
+    },
+    { 
+        "state_abrv": "CA",
+        "state_name": "California",
+        "muni": "Watsonville",
+        "developer": "New Leaf Energy",
+        "developer_link": "https://www.newleafenergy.com/",
+        "project": "Seahawk Energy Storage",
+        "project_link": "https://www.seahawkenergystorage.com/",
+        "bess_manufacturer": null,
+        "bess_mw": 200,
+        "bess_mwh": 800,
+        "bess_duration": 4,
+        "google_maps_url": "https://www.google.com/maps/place/90+Minto+Rd,+Watsonville,+CA+95076/@36.9508117,-121.7635877,854m/data=!3m1!1e3!4m6!3m5!1s0x808e1bb686b8a469:0xbb2c23dacc45b73e!8m2!3d36.9510791!4d-121.7590176!16s%2Fg%2F11cpkckq6j?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D",
+        "lat": 36.95111995088226,
+        "lon": -121.7590013713441,
+        "muni_websites": [
+            { 
+                "name": "Santa Cruz County - Community Development and Infrastructure", 
+                "link": "https://cdi.santacruzcountyca.gov/UPC/GetInvolved/MajorProjectApplications.aspx" 
+            }
+        ],
+        "local_websites": [
+            { 
+                "name": "STOP Lithium BESS in Santa Cruz County", 
+                "link": "https://www.stoplithiumbessinsantacruz.org/" 
+            },
+            {
+                "name": "STOP LITHIUM B.E.S.S. IN SANTA CRUZ COUNTY (facebook)",
+                "link": "https://www.facebook.com/groups/519407474020832/"
+            }
+        ],
+        "articles": [
+            { 
+                "name": "Talks continue on Battery Energy Storage Systems",
+                "link": "https://pajaronian.com/talks-continue-on-battery-energy-storage-systems/",
+                "date": "2025-07-25",
+                "highlight": "About 150 people gathered in Santa Cruz July 17, for a third meeting held over the past few months to send the message that proposed Battery Energy Storage Systems (BESS) in Watsonville, Aptos and Santa Cruz are not welcome."
+            }
+        ],
+        "updt": "2025-07-31"
+    },
+    { 
+        "state_abrv": "CA",
+        "state_name": "California",
+        "muni": "Acton",
+        "developer": "Fullmark Energy",
+        "developer_link": "https://fullmarkenergy.com/",
+        "project": "Humidor Storage Project",
+        "project_link": "https://humidorstorage.com/",
+        "bess_manufacturer": null,
+        "bess_mw": 400,
+        "bess_mwh": 1600,
+        "bess_duration": 4,
+        "google_maps_url": "https://www.google.com/maps/place/Acton,+CA/@34.4951623,-118.1234278,3499m/data=!3m1!1e3!4m6!3m5!1s0x80c2f69d9fd064ef:0x987ba0a9070667cc!8m2!3d34.469994!4d-118.1967418!16zL20vMHFfdm0?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D",
+        "lat": 34.497552081952875,
+        "lon": -118.12310557324203,
+        "muni_websites": [
+            { 
+                "name": "Acton Town Council", 
+                "link": "https://actontowncouncil.org/" 
+            }
+        ],
+        "local_websites": [
+            { 
+                "name": "Acton Takes Action", 
+                "link": "https://acton-bess-opposition-petition.actontakesaction.org/index.html" 
+            },
+            {
+                "name": "Acton/Agua Dulce REAL Community News",
+                "link": "https://www.facebook.com/groups/2046516502257039/about"
+            }
+        ],
+        "articles": [
+            { 
+                "name": "Court date set for Acton battery storage project",
+                "link": "https://www.avpress.com/news/court-date-set-for-acton-battery-storage-project/article_7c7d9e2a-36b1-4798-bb92-e7d13d05dc67.html",
+                "date": "2025-07-15",
+                "highlight": "A controversial battery energy storage project in Acton is heading to court this week, as residents prepare to challenge the approval of the facility in Los Angeles County Superior Court on Thursday."
+            }
+        ],
+        "updt": "2025-07-31"
+    },
+    { 
+        "state_abrv": "CA",
+        "state_name": "California",
+        "muni": "Escondido",
+        "developer": "AES",
+        "developer_link": "https://www.aes.com/",
+        "project": "Seguro energy storage project",
+        "project_link": "https://www.aes.com/project/seguro-energy-storage-project",
+        "bess_manufacturer": null,
+        "bess_mw": 320,
+        "bess_mwh": 1280,
+        "bess_duration": 4,
+        "google_maps_url": "https://www.google.com/maps/place/Milpas+Dr+%26+Country+Club+Dr,+West+Ridge,+CA+92029/@33.1228221,-117.1267164,675m/data=!3m1!1e3!4m6!3m5!1s0x80dbf5208ef5bced:0x8de132a754596cbb!8m2!3d33.1221134!4d-117.1274893!16s%2Fg%2F11gf3_wq9n?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D",
+        "lat": 33.12218814790717,
+        "lon": -117.1275139304041,
+        "muni_websites": [
+            { 
+                "name": "Escondido", 
+                "link": "https://www.escondido.gov/" 
+            }
+        ],
+        "local_websites": [
+            { 
+                "name": "Stop Seguro", 
+                "link": "https://www.stopseguro.org/" 
+            },
+            {
+                "name": "Stop The Seguro Battery Energy Storage System in Escondido (facebook)",
+                "link": "https://www.facebook.com/groups/184192198092935"
+            }
+        ],
+        "articles": [
+            { 
+                "name": "Californian city introduces temporary moratorium on battery storage sites",
+                "link": "https://pv-magazine-usa.com/2024/10/11/californian-city-introduces-temporary-moratorium-on-battery-storage-sites/",
+                "date": "2024-10-11",
+                "highlight": "Calls for a ban on new BESS projects in San Diego County were made in the wake of a 17-day battery fire at the 250 MW/250 MWh Gateway Energy Storage Station in Otay Mesa in May 2024. On September 5, 2024, mandatory evacuation orders were issued in Escondido after a fire broke out at a BESS facility belonging to utility San Diego Gas & Electric."
+            }
+        ],
+        "updt": "2025-07-31"
+    },
+    { 
+        "state_abrv": "MA",
+        "state_name": "Massachusetts",
+        "muni": "Wendell",
+        "developer": "New Leaf Energy",
+        "developer_link": "",
+        "project": "Wendell Energy Storage Project",
+        "project_link": "https://www.newleafenergy.com/project/wendell-energy-storage",
+        "bess_manufacturer": null,
+        "bess_mw": 105,
+        "bess_mwh": 420,
+        "bess_duration": 4,
+        "google_maps_url": "https://www.google.com/maps/place/Wendell,+MA/@42.540156,-72.4126255,15315m/data=!3m1!1e3!4m6!3m5!1s0x89e136df2cb4e975:0xc070a71a55076a55!8m2!3d42.5481852!4d-72.396722!16zL20vMHR6Z3c?entry=ttu&g_ep=EgoyMDI1MDcyNy4wIKXMDSoASAFQAw%3D%3D",
+        "lat": 42.54848386827915,
+        "lon": -72.39708948974521,
+        "muni_websites": [
+            { 
+                "name": "Wendell, MA - Town Government", 
+                "link": "https://www.wendellmass.us/town-government/" 
+            }
+        ],
+        "local_websites": [
+            { 
+                "name": "No Assault & Batteries in Wendell MA", 
+                "link": "https://nabunited.org/" 
+            }
+        ],
+        "articles": [
+            { 
+                "name": "Citizens group asks court to overturn AG decision on battery-storage bylaw in Wendell",
+                "link": "https://www.recorder.com/No-Assault-and-Batteries-asks-Land-Court-to-overturn-AG-s-decision-61427652",
+                "date": "2025-05-28",
+                "highlight": "A local citizens group called No Assault & Batteries (NAB) had vigorously opposed Lowell-based New Leaf Energy’s proposed construction of a 105-megawatt battery storage facility off Wendell Depot Road in Wendell. The company rescinded its proposal in the summer of 2024. NAB had proposed a bylaw regarding the licensing of battery energy storage systems, including those powered by lithium-ion batteries, and it was passed overwhelmingly at a special Town Meeting in May 2024 only to get rejected by the state Attorney General’s Office for failing to comply with procedural safeguards embedded into state zoning laws."
+            }
+        ],
+        "updt": "2025-07-31"
+    },
+    { 
+        "state_abrv": "NY",
+        "state_name": "New York",
+        "muni": "Hurley",
+        "developer": "Terra-Gen",
+        "developer_link": "https://terra-gen.com/",
+        "project": "Ulster Clean Energy",
+        "project_link": "https://ulstercleanenergy.com/",
+        "bess_manufacturer": null,
+        "bess_mw": 250,
+        "bess_mwh": null,
+        "bess_duration": null,
+        "google_maps_url": "https://www.google.com/maps/place/Hurley,+NY/@42.4189782,-73.799889,282027m/data=!3m1!1e3!4m6!3m5!1s0x89dd0470bdd8f165:0x1aee7f88cefeb37c!8m2!3d41.9972928!4d-74.1048603!16zL20vMDFtZ3J6?entry=ttu&g_ep=EgoyMDI1MDcyNy4wIKXMDSoASAFQAw%3D%3D",
+        "lat": 41.94592736909007,
+        "lon": -74.10450648632535,
+        "muni_websites": [
+            { 
+                "name": "Town of Hurley", 
+                "link": "https://www.townofhurley.org/" 
+            }
+        ],
+        "local_websites": [
+            { 
+                "name": "Citizens of the Town of Hurley", 
+                "link": "https://www.facebook.com/groups/709145213585388/" 
+            }
+        ],
+        "articles": [
+            { 
+                "name": "Not in my backyard - Hurley residents speak out against battery plant",
+                "link": "https://midhudsonnews.com/2025/06/19/not-in-my-backyard-hurley-residents-speak-out-against-battery-plant/",
+                "date": "2025-06-19",
+                "highlight": "They were there to oppose the construction of a lithium-ion battery plant in their neighborhood. The facility, which is being proposed for the former site of the John A. Coleman Catholic High School, would be developed by Terra-Gen, a San Diego-based company, specializing in energy storage."
+            }
+        ],
+        "updt": "2025-07-31"
+    },
+    { 
+        "state_abrv": "WA",
+        "state_name": "Washington",
+        "muni": "Covington",
+        "developer": "Tenaska",
+        "developer_link": "https://renewables.tenaska.com/battery/",
+        "project": "Kingfisher Battery Energy Storage",
+        "project_link": "https://www.documentcloud.org/documents/23865621-kingfisher-presentation/",
+        "bess_manufacturer": null,
+        "bess_mw": null,
+        "bess_mwh": null,
+        "bess_duration": null,
+        "google_maps_url": "https://www.google.com/maps/place/Mattson+Middle+School/@47.3779301,-122.1201519,766m/data=!3m1!1e3!4m6!3m5!1s0x54905e4c69123853:0xb168ed1ecf4d057d!8m2!3d47.3778222!4d-122.1212928!16s%2Fm%2F076kbz_?entry=ttu&g_ep=EgoyMDI1MDcyNy4wIKXMDSoASAFQAw%3D%3D",
+        "lat": 47.37768311989348,
+        "lon": -122.12133202371379,
+        "muni_websites": [
+            { 
+                "name": "Covington - city government", 
+                "link": "https://www.covingtonwa.gov/city_government/citygovernment.php" 
+            }
+        ],
+        "local_websites": [
+            { 
+                "name": "Stop the proposed Covington Battery Energy Storage System (BESS)", 
+                "link": "https://www.facebook.com/groups/3162400907401094/" 
+            }
+        ],
+        "articles": [
+            { 
+                "name": "Covington residents want answers about controversial proposal to build battery storage facility",
+                "link": "https://www.fox13seattle.com/news/battery-storage-site-covington-bess",
+                "date": "2024-05-09",
+                "highlight": "There is a lot of opposition by Covington residents about a proposed battery storage facility in the city."
+            }
+        ],
+        "updt": "2025-07-31"
+    },
+    { 
+        "state_abrv": "CA",
+        "state_name": "California",
+        "muni": "Vacaville",
+        "developer": "NextEra",
+        "developer_link": "https://www.nexteraenergy.com/",
+        "project": "Corby Project",
+        "project_link": "https://www.nexteraenergyresources.com/corby-project.html",
+        "bess_manufacturer": "CATL",
+        "bess_mw": 300,
+        "bess_mwh": 1200,
+        "bess_duration": 4,
+        "google_maps_url": "https://www.google.com/maps/place/Byrnes+Rd,+California+95687/@38.3958783,-121.9066113,1343m/data=!3m1!1e3!4m6!3m5!1s0x80853ca917ee3cb5:0x7020585ed16915fd!8m2!3d38.3784056!4d-121.9059769!16s%2Fg%2F1tnqh6hl?entry=ttu&g_ep=EgoyMDI1MDcyNy4wIKXMDSoASAFQAw%3D%3D",
+        "lat": 38.39521554017204,
+        "lon": -121.90596086355978,
+        "muni_websites": [
+            { 
+                "name": "City of Vacaville", 
+                "link": "https://www.cityofvacaville.gov/government" 
+            },
+            {
+                "name": "CEC - Corby Battery Energy Storage System Project",
+                "link": "https://www.energy.ca.gov/powerplant/battery-storage-system/corby-battery-energy-storage-system-project"
+            }
+        ],
+        "local_websites": [
+            { 
+                "name": "Keep Vacaville Safe", 
+                "link": "https://www.keepvacavillesafe.com/" 
+            }
+        ],
+        "articles": [
+            {
+                "name": "Vacaville neighbors push back on proposed battery plant as energy company works to win favor",
+                "link": "https://www.cbsnews.com/sacramento/news/vacaville-neighbors-push-back-proposed-battery-plant/",
+                "date": "2025-07-24",
+                "highlight": "Some neighbors are sounding the alarm on the project, saying the public safety risks outweigh the benefits, and organizing a campaign against it."
+            },
+            { 
+                "name": "NextEra turns to California state regulator for 1.2GWh BESS to get around city's moratorium",
+                "link": "https://www.energy-storage.news/nextera-turns-to-california-state-regulator-for-1-2gwh-bess-to-get-around-citys-moratorium/",
+                "date": "2024-11-21",
+                "highlight": "NextEra Energy Resources (NEER) has become the next IPP to seek approval of a renewable energy development incorporating battery storage via the California Energy Commission's (CEC's) opt-in process..."
+            }
+        ],
+        "updt": "2025-07-31"
+    }
+];
+
+var data__articles = [];
+data__projects.forEach(function (proj) {
+    proj.articles.forEach(function (article) {
+        article.state_abrv = proj.state_abrv;
+        article.muni = proj.muni;
+        article.lat = proj.lat;
+        article.lon = proj.lon;
+        data__articles.push(article);
+    });
+});
+
+var shared__layout = {
+    topStart: 'info',
+    topEnd: 'search',
+    bottomStart: null,
+    bottomEnd: ['pageLength', 'paging']
+};
+var shared__columnDefs = [
+    { orderable: false, targets: [0] },
+    {
+        target: '.m__search',
+        columnControl: [
+            {
+                target: 1,
+                content: ['search']
+            }
+        ]
+    }
+];
+
+let table__projects = new DataTable('#projects', {
+    responsive: true,
+    layout: shared__layout,
+    data: data__projects,
+    columns: [
+        {
+            data: null,
+            className: 'max-width-first-col text-center',
+            render: function (data, type, row) {
+                return '<i class="text-black-25 fa-solid fa-plus"></i>';
+            }
+        },
+        {
+            data: null,
+            className: 'fw-bold',
+            render: function (data, type, row) {
+                return row.state_abrv + ', ' + row.muni;
+            }
+        },
+        { data: 'developer' }, 
+        { 
+            data: 'bess_mw',
+            className: 'text-end',
+            render: function (data, type, row) {
+                if (type === 'display') {
+                    return (data === null ? "?" : data);
+                }
+                return data;
+            } 
+        },
+        { 
+            data: 'bess_mwh', 
+            className: 'text-end',
+            render: function (data, type, row) {
+                if (type === 'display') {
+                    return (data === null ? "?" : data);
+                }
+                return data;
+            }
+        },
+        { 
+            data: 'bess_duration',
+            className: 'text-end',
+            render: function (data, type, row) {
+                if (type === 'display') {
+                    return (data === null ? "?" : data + '-hr');
+                }
+                return data;
+            }
+        },
+        {
+            data: null,
+            className: 'td-max-width-sm',
+            render: function (data, type, row) {
+                return (row.articles[0].date !== undefined ? row.articles[0].date : '-');
+            }
+        },
+        { data: 'updt', className: 'text-secondary td-max-width-sm' }
+    ],
+    columnDefs: shared__columnDefs,
+    order: [[1, 'asc']]
+});
+
+let table__groups = new DataTable('#groups', {
+    responsive: true,
+    layout: shared__layout,
+    data: data__groups,
+    columns: [
+        {
+            data: null,
+            className: 'max-width-first-col text-center', 
+            render: function (data, type, row) {
+                return '<i class="text-black-25 fa-solid fa-chevron-right"></i>';
+            } 
+        },
+        { 
+            data: null,
+            className: 'fw-bold',
+            render: function (data, type, row) {
+                return row.state_abrv + ', ' + row.muni;
+            }
+        },
+        { data: 'name', },
+        { 
+            data: 'type', 
+            className: 'td-max-width-sm', 
+            render: function (data, type, row) {
+                if (row.type === 'facebook') {
+                    return '<span class="d-none">' + data + '</span><i class="text-primary fa-brands fa-facebook-f me-1"></i><span class="text-primary">' + data + '</span>';
+                } else if (row.type === 'twitter') {
+                    return '<span class="d-none">' + data + '</span><i class="text-primary fa-brands fa-x-twitter me-1"></i><span class="text-primary">' + data + '</span>';
+                } else if (row.type === 'web') {
+                    return '<span class="d-none">' + data + '</span><i class="text-primary fa-solid fa-globe me-1"></i><span class="text-primary">' + data + '</span>';
+                } else {
+                    return '';
+                }
+            }
+        },
+        { data: 'updt', className: 'text-secondary td-max-width-sm' }
+    ],
+    columnDefs: shared__columnDefs,
+    order: [[1, 'asc']]
+});
+
+let table__articles = new DataTable('#articles', {
+    lengthMenu: [5, 10, 25, 50, 100],
+    pageLength: 100,
+    responsive: true,
+    layout: shared__layout,
+    data: data__articles,
+    columns: [
+        {
+            data: null,
+            className: 'max-width-first-col text-center', 
+            render: function (data, type, row) {
+                return '<i class="text-black-25 fa-solid fa-chevron-right"></i>';
+            } 
+        },
+        { 
+            data: null,
+            className: 'fw-bold',
+            render: function (data, type, row) {
+                return row.state_abrv + ', ' + row.muni;
+            }
+        },
+        { 
+            data: 'name', 
+            render: function (data, type, row) {
+                return '<b>' + row.name + '</b><br />' + row.highlight;
+            }
+        },
+        { data: 'date' }
+    ],
+    columnDefs: shared__columnDefs,
+    order: [[1, 'asc']]
+});
+
+
+// row clicks
+$('#projects tbody').on('click', 'tr', function() {
+    var data = table__projects.row(this).data();
+    buildOffCanvasLocation(data);
+});
+$('#groups tbody').on('click', 'tr', function() {
+    var data = table__groups.row(this).data();
+    window.open(data.link, '_blank');
+});
+$('#articles tbody').on('click', 'tr', function() {
+    var data = table__articles.row(this).data();
+    window.open(data.link, '_blank');
+});
+function openLink(linkText) {
+    window.open(linkText, '_blank');
+}
+
+function buildOffCanvasLocation(data) {
+    // test for null for non-arrays; test for length for arrays
+    var content__developer = '';
+    if (data.developer !== null) {
+        if (data.developer_link !== null) {
+            content__developer = `
                 <tr class="link-row" onclick="openLink('${data.developer_link}')">
                     <td>Developer:</td>
                     <td><b>${ data.developer }</b></td>
                     <td class="text-end"><i class="fa-solid fa-chevron-right"></i></td>
                 </tr>
-            `}else{content__developer=`
+            `;
+        } else {
+            content__developer = `
                 <tr>
                     <td>Developer:</td>
                     <td class="fw-bold">${ data.developer }</td>
                     <td></td>
                 </tr>
-            `}}
-var content__project='';if(data.project!==null){if(data.project_link!==null){content__project=`
+            `;
+        }
+    }
+
+    var content__project = '';
+    if (data.project !== null) {
+        if (data.project_link !== null) {
+            content__project = `
                 <tr class="link-row" onclick="openLink('${data.project_link}')">
                     <td>Project:</td>
                     <td><b>${ data.project }</b></td>
                     <td class="text-end"><i class="fa-solid fa-chevron-right"></i></td>
                 </tr>
-            `}else{content__project=`
+            `;
+        } else {
+            content__project = `
                 <tr>
                     <td>Project:</td>
                     <td class="fw-bold">${ data.project }</td>
                     <td></td>
                 </tr>
-            `}}
-var content__bess_mnfc='';if(data.bess_manufacturer!==null){content__bess_mnfc=`
+            `;
+        }
+    }
+
+    var content__bess_mnfc = '';
+    if (data.bess_manufacturer !== null) {
+        content__bess_mnfc = `
             <tr>
                 <td>Manufacturer:</td>
                 <td class="fw-bold">${ data.bess_manufacturer }</td>
                 <td></td>
             </tr>
-        `}
-var content__muni='';if(data.muni_websites.length>0){content__muni='<table class="table table-sm"><thead><tr><th colspan="2" class="bg-body-secondary"><i class="text-black-50 fa-solid fa-tree-city me-2"></i>Municipal websites</th></tr><tbody>';data.muni_websites.forEach(function(muni,index){content__muni=content__muni+`<tr class="link-row" onclick="openLink('${muni.link}')">`+'<td>'+muni.name+'</td><td class="text-end"><i class="fa-solid fa-chevron-right"></i></td></tr>'});content__muni=content__muni+'</tbody></table>'}
-var content__art='';if(data.articles.length>0){content__art='<table class="table table-sm"><thead><tr><th class="bg-body-secondary" colspan="2"><i class="text-black-50 fa-solid fa-newspaper me-2"></i>Articles</th></tr><tbody>';data.articles.forEach(function(article,index){content__art=content__art+`<tr class="link-row" onclick="openLink('${article.link}')">`+'<td><strong>'+article.name+'</strong><br /><span class="text-secondary">'+article.date+'</span><br />'+'<div class="callout me-0 pe-0 mt-2"><span class="text-body-tertiary fst-italic">highlight:</span> '+article.highlight+'</div></td>'+'<td class="text-end"><i class="fa-solid fa-chevron-right"></i></td></tr>'});content__art=content__art+'</tbody></table>'}
-var content__local='';if(data.local_websites.length>0){content__local='<table class="table table-sm"><thead><tr><th colspan="2" class="bg-body-secondary"><i class="text-black-50 fa-solid fa-person-circle-question me-2"></i>Local pushback websites</th></tr><tbody>';data.local_websites.forEach(function(local,index){var icon__local=((local.link.includes('facebook.com'))?'<i class="fa-brands fa-facebook-f ms-2"></i>':'<i class="fa-solid fa-globe ms-2"></i>');content__local=content__local+`<tr class="link-row" onclick="openLink('${local.link}')">`+'<td>'+local.name+icon__local+'</td>'+'<td class="text-end"><i class="fa-solid fa-chevron-right"></i></td></tr>'});content__local=content__local+'</tbody></table>'}
-$('#detailsOffcanvasLabel').html(`${ data.state_abrv }, ${ data.muni }`);$('#offcanvasContent').html(`
+        `;
+    }
+
+    var content__muni = '';
+    if (data.muni_websites.length > 0) {
+        content__muni = '<table class="table table-sm"><thead><tr><th colspan="2" class="bg-body-secondary"><i class="text-black-50 fa-solid fa-tree-city me-2"></i>Municipal websites</th></tr><tbody>';
+        data.muni_websites.forEach(function (muni, index) {
+            content__muni = content__muni + `<tr class="link-row" onclick="openLink('${muni.link}')">` + 
+            '<td>' + muni.name + '</td><td class="text-end"><i class="fa-solid fa-chevron-right"></i></td></tr>';
+        });
+        content__muni = content__muni + '</tbody></table>';
+    }
+
+    var content__art = '';
+    if (data.articles.length > 0) {
+        content__art = '<table class="table table-sm"><thead><tr><th class="bg-body-secondary" colspan="2"><i class="text-black-50 fa-solid fa-newspaper me-2"></i>Articles</th></tr><tbody>';
+        data.articles.forEach(function (article, index) {
+            // name, date, link, highlight
+            content__art = content__art + `<tr class="link-row" onclick="openLink('${article.link}')">` + 
+            '<td><strong>' + article.name + '</strong><br /><span class="text-secondary">' + article.date + '</span><br />' + 
+            '<div class="callout me-0 pe-0 mt-2"><span class="text-body-tertiary fst-italic">highlight:</span> ' + article.highlight + '</div></td>' +
+            '<td class="text-end"><i class="fa-solid fa-chevron-right"></i></td></tr>';
+        });
+        content__art = content__art + '</tbody></table>';
+    }
+
+    var content__local = '';
+    if (data.local_websites.length > 0) {
+        content__local = '<table class="table table-sm"><thead><tr><th colspan="2" class="bg-body-secondary"><i class="text-black-50 fa-solid fa-person-circle-question me-2"></i>Local pushback websites</th></tr><tbody>';
+        data.local_websites.forEach(function (local, index) {
+            var icon__local = ((local.link.includes('facebook.com')) ? '<i class="fa-brands fa-facebook-f ms-2"></i>' : '<i class="fa-solid fa-globe ms-2"></i>');
+            content__local = content__local + `<tr class="link-row" onclick="openLink('${local.link}')">` +  
+            '<td>' + local.name + icon__local + '</td>' +
+            '<td class="text-end"><i class="fa-solid fa-chevron-right"></i></td></tr>';
+        });
+        content__local = content__local + '</tbody></table>';
+    }
+
+    // Assuming 'data' is an array or object containing row details
+    $('#detailsOffcanvasLabel').html(`${ data.state_abrv }, ${ data.muni }`);
+    $('#offcanvasContent').html(`
         <table class="table table-sm">
             <tbody>
                 <tr>
@@ -70,4 +1363,95 @@ $('#detailsOffcanvasLabel').html(`${ data.state_abrv }, ${ data.muni }`);$('#off
         ${ content__muni }
         ${ content__local }
         ${ content__art }
-    `);var offcanvas=new bootstrap.Offcanvas(document.getElementById('detailsOffcanvas'));offcanvas.show()}(async()=>{const topology=await fetch('https://code.highcharts.com/mapdata/countries/us/us-all.topo.json').then(response=>response.json());const mapBESS=Highcharts.mapChart('map-projects-container',{chart:{map:topology,animation:!0},title:{text:'Projects',margin:0,style:{color:'#111111',fontFamily:'Arial, sans-serif',fontWeight:'normal',fontSize:17}},mapNavigation:{enabled:!0},tooltip:{headerFormat:'',pointFormat:'<b>{point.muni}, {point.state_abrv}</b><br />'+'developer: <b>{point.developer}</b><br />'+'MW: <b>{point.bess_mw}</b>'},colorAxis:{min:0,max:5},plotOptions:{mappoint:{cluster:{enabled:!0,layoutAlgorithm:{type:'optimalizedKmeans'}},events:{click:function(e){console.log(e);if(e.point.isCluster!==!0){buildOffCanvasLocation(e.point)}}}}},series:[{name:'Basemap',borderColor:'#A0A0A0',nullColor:'rgba(200, 200, 200, 0.3)',showInLegend:!1},{type:'mappoint',colorKey:'clusterPointsAmount',name:'Projects',color:Highcharts.getOptions().colors[1],data:data__projects}]});$('.btn-group .btn-map').on('click',function(){var newTitle=$(this).text();if(newTitle==='Projects'){mapBESS.series[1].setData(data__projects)}else if(newTitle==='Groups'){mapBESS.series[1].setData(data__groups)}else if(newTitle==='Articles'){mapBESS.series[1].setData(data__articles)}})})();</script></body></html>
+    `);
+    var offcanvas = new bootstrap.Offcanvas(document.getElementById('detailsOffcanvas'));
+    offcanvas.show();
+}
+
+/*
+console.log(table__projects.page.info().recordsTotal);
+console.log(table__groups.page.info().recordsTotal);
+*/
+
+/***********************************/
+/* Highcharts                      */
+/***********************************/
+(async () => {
+
+    const topology = await fetch(
+        'https://code.highcharts.com/mapdata/countries/us/us-all.topo.json'
+    ).then(response => response.json());
+
+    const mapBESS = Highcharts.mapChart('map-projects-container', {
+        chart: {
+            map: topology,
+            animation: true
+        },
+        title: {
+            text: 'Projects', // null
+            margin: 0,
+            style: {
+                color: '#111111',
+                fontFamily: 'Arial, sans-serif',
+                fontWeight: 'normal',
+                fontSize: 17
+            }
+        },
+        mapNavigation: { enabled: true },
+        tooltip: {
+            headerFormat: '',
+            pointFormat: '<b>{point.muni}, {point.state_abrv}</b><br />' +
+            'developer: <b>{point.developer}</b><br />' +
+            'MW: <b>{point.bess_mw}</b>'
+        },
+        colorAxis: {
+            min: 0,
+            max: 5
+        },
+        plotOptions: {
+            mappoint: {
+                cluster: {
+                    enabled: true,
+                    layoutAlgorithm: {
+                        type: 'optimalizedKmeans'
+                    }
+                },
+                events: {
+                    click: function(e) {
+                        console.log(e);
+                        if (e.point.isCluster !== true) {
+                            buildOffCanvasLocation(e.point)
+                        }
+                    }
+                } 
+            }
+        },
+        series: [{
+            name: 'Basemap',
+            borderColor: '#A0A0A0',
+            nullColor: 'rgba(200, 200, 200, 0.3)',
+            showInLegend: false
+        }, {
+            type: 'mappoint',
+            colorKey: 'clusterPointsAmount',
+            name: 'Projects',
+            color: Highcharts.getOptions().colors[1],
+            data: data__projects
+        }]
+    });
+ 
+    $('.btn-group .btn-map').on('click', function() {
+        var newTitle = $(this).text();
+        // mapBESS.setTitle({ text: newTitle });
+        if (newTitle === 'Projects') {
+            mapBESS.series[1].setData(data__projects);
+        } else if (newTitle === 'Groups') {
+            mapBESS.series[1].setData(data__groups);
+        } else if (newTitle === 'Articles') {
+            mapBESS.series[1].setData(data__articles);
+        }
+    });
+})();
+</script>
+</body>
+</html>
